@@ -19,3 +19,15 @@ Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+
+# 后台路由组
+Route::group(['prefix' => 'backend'], function() {
+
+    # 后台首页
+    Route::get('/', [
+        'as' => 'backend_dashboard_index',
+        'uses' => 'Backend\DashboardController@index'
+    ]);
+
+});
