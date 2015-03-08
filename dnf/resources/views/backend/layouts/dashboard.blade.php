@@ -27,14 +27,14 @@
                         <ul class="nav navbar-nav pull-right right-navbar-nav">
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle user-menu" data-toggle="dropdown">
-                                    <span>John Doe</span>
+                                    <span>{{ Auth::user()->realname }}</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!--<li><a href="#"><span class="label label-warning pull-right">New</span>Profile</a></li>
                                     <li><a href="#"><span class="badge badge-primary pull-right">New</span>Account</a></li>
                                     <li><a href="#"><i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;Settings</a></li>
                                     <li class="divider"></li>-->
-                                    <li><a href=""><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;{{ Lang::get('backend.logout') }}</a></li>
+                                    <li><a href="{{ route('backend_auth_auth_logout')}}"><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;{{ Lang::get('backend.logout') }}</a></li>
                                 </ul>
                             </li>
                         </ul> <!-- / .navbar-nav -->
