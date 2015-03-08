@@ -2,12 +2,10 @@
 
 /*
 |--------------------------------------------------------------------------
-| Application Routes
+| 备注
 |--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
+| 路由的命名关系到权限控制，请按照下例格式来命名
+| 'as' => 'backend|frontend_[模块名_]类名_方法名'
 |
 */
 
@@ -23,6 +21,22 @@ Route::controllers([
 
 # 后台路由组
 Route::group(['prefix' => 'backend'], function() {
+
+    # 页面：管理员登陆
+    Route::get('/login', [
+        'as' => 'backend_auth_auth_index',
+        'uses' => 'Backend\Auth\AuthController@index'
+    ]);
+    # Post: 管理员登陆
+    Route::post('/login',[
+        'as' => 'backend_auth_auth_login',
+        'uses' => 'Backend\Auth\AuthController@login'
+    ]);
+    # Get: 管理员退出
+    Route::get('/logout', [
+        'as' => 'backend_auth_auth_logout',
+        'uses' => 'Backend\Auth\AuthController@logout'
+    ]);
 
     # 后台首页
     Route::get('/', [
