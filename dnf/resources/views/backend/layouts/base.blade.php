@@ -22,6 +22,14 @@
 <script src="/js/backend/jquery.min.js"></script>
 <script src="/js/backend/bootstrap.min.js"></script>
 <script src="/js/backend/pixel-admin.min.js"></script>
+    @if(Session::has('error'))
+    <script>
+    bootbox.alert({
+        message: "<?php echo Session::get('error'); ?>",
+        className: "bootbox-sm"
+    });
+    </script>
+    @endif
 @show
 </body>
 </html>
