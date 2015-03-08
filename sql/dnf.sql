@@ -44,12 +44,13 @@ CREATE TABLE `dnf_admin_users` (
   `mark` varchar(255) DEFAULT '' COMMENT '备注',
   `last_login_ip` varchar(255) DEFAULT NULL COMMENT '最后登录ip',
   `last_login_time` bigint(20) DEFAULT NULL,
+  `remember_token` varchar(255) DEFAULT '' COMMENT 'Remember_token',
   `is_deleted` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='用户表';
 
-INSERT INTO `dnf_admin_users` (`id`, `name`, `password`, `group_id`, `realname`, `token`, `created_at`, `updated_at`, `mobile`, `status`, `mark`, `last_login_ip`, `last_login_time`, `is_deleted`) VALUES
-(1, 'root', '63a9f0ea7bb98050796b649e85481845', 1, '', '', 0, NULL, NULL, 1, '', NULL, NULL, 0);
+INSERT INTO `dnf_admin_users` (`id`, `name`, `password`, `group_id`, `realname`, `token`, `created_at`, `updated_at`, `mobile`, `status`, `mark`, `last_login_ip`, `last_login_time`, `remember_token`, `is_deleted`) VALUES
+(1, 'root', '$2y$10$4eNKAlHS6qK7th0Dj.rW1eUHldux4rNILIl42mJL2PIGabDGdEdeK', 1, '叶子鑫', '', 0, 0, NULL, 1, '', NULL, NULL, '', 0);
 
 
 DROP TABLE IF EXISTS `dnf_admin_user_groups`;
