@@ -85,6 +85,50 @@ Route::group(['prefix' => 'backend'], function() {
             ]);
         });
 
+        # 用户组管理
+        Route::group(['prefix' => 'group'], function() {
+
+            # 页面：用户组首页
+            Route::get('/index', [
+                'as' => 'backend_system_group_index',
+                'uses' => 'Backend\System\GroupController@index'
+            ]);
+
+            # 页面: 用户组添加
+            Route::get('/add', [
+                'as' => 'backend_system_group_add',
+                'uses' => 'Backend\System\GroupController@add'
+            ]);
+            # 动作：用户组添加
+            Route::post('/add', [
+                'as' => 'backend_system_group_add',
+                'uses' => 'Backend\System\GroupController@_add'
+            ]);
+
+            # 页面：用户组编辑
+            Route::get('/edit', [
+                'as' => 'backend_system_group_edit',
+                'uses' => 'Backend\System\GroupController@edit'
+            ]);
+            # 动作：用户组编辑保存
+            Route::post('/edit', [
+                'as' => 'backend_system_group_edit',
+                'uses' => 'Backend\System\GroupController@_edit'
+            ]);
+
+            # 动作：用户组删除
+            Route::post('/delete', [
+                'as' => 'backend_system_group_delete',
+                'uses' => 'Backend\System\GroupController@_delete'
+            ]);
+
+            # 动作：改变用户组状态
+            Route::post('/change-status', [
+                'as' => 'backend_system_group_change-status',
+                'uses' => 'Backend\System\GroupController@_changeStatus'
+            ]);
+
+        });
     });
 
 });
