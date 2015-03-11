@@ -7,6 +7,29 @@ class AclWidget
 {
 
     /**
+     * 生成状态改变的文字button
+     *
+     * @param $formUrl
+     * @param string $module
+     * @param string $class
+     * @param string $function
+     * @param string $buttonName
+     *
+     */
+    public static function change($formUrl, $module, $class, $function, $buttonName, $buttonId, $id)
+    {
+        $hasAcl = static::_hasPermission($module, $class, $function);
+
+        $htmlChange = $hasAcl ?
+            '<a id="'.$buttonId.'" title="'.Lang::get('backend.change').'"
+            href="javascript:ajaxChange(\''.$formUrl.'\', \''.$buttonId.'\', \''.$id.'\')"'.
+            ' class="btn btn-primary btn-rounded">'.$buttonName.'</a>' :
+            '<button class="btn btn-primary btn-rounded disabled">'.$buttonName.'</button>';
+
+        return $htmlChange;
+    }
+
+    /**
      * 生成add Button
      *
      * @param $formUrl
@@ -61,8 +84,8 @@ class AclWidget
         $htmlDel = $hasAcl ?
             '<a title="'.Lang::get('backend.delete').'"
             href="javascript:ajaxDelete(\''.$formUrl.'\', \''.$tableList.'\', \''.$data.'\')"'.
-            ' class="btn btn-primary btn-rounded"><i class="fa fa-pencil"></i></a>' :
-            '<button class="btn btn-primary btn-rounded disabled"><i class="fa fa-pencil"></i></button>';
+            ' class="btn btn-primary btn-rounded"><i class="fa fa-times-circle"></i></a>' :
+            '<button class="btn btn-primary btn-rounded disabled"><i class="fa fa-times-circle"></i></button>';
 
         return $htmlDel;
     }
