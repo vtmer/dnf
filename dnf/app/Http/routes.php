@@ -44,4 +44,47 @@ Route::group(['prefix' => 'backend'], function() {
         'uses' => 'Backend\DashboardController@index'
     ]);
 
+    # 系统管理
+    Route::group(['prefix' => 'system'], function() {
+
+        # 菜单功能管理
+        Route::group(['prefix' => 'acl'], function() {
+
+            # 页面：菜单功能首页
+            Route::get('/index', [
+                'as' => 'backend_system_acl_index',
+                'uses' => 'Backend\System\AclController@index'
+            ]);
+
+            # 页面：菜单功能添加
+            Route::get('/add', [
+                'as' => 'backend_system_acl_add',
+                'uses' => 'Backend\System\AclController@add'
+            ]);
+            # 动作：菜单功能添加
+            Route::post('/add', [
+                'as' => 'backend_system_acl_add',
+                'uses' => 'Backend\System\AclController@_add'
+            ]);
+
+            # 动作：菜单功能编辑
+            Route::get('/edit', [
+                'as' => 'backend_system_acl_edit',
+                'uses' => 'Backend\System\AclController@edit'
+            ]);
+            # 动作：菜单功能编辑保存
+            Route::post('/edit', [
+                'as' => 'backend_system_acl_edit',
+                'uses' => 'Backend\System\AclController@_edit'
+            ]);
+
+            # 动作：菜单功能删除
+            Route::post('/delete', [
+                'as' => 'backend_system_acl_delete',
+                'uses' => 'Backend\System\AclController@_delete'
+            ]);
+        });
+
+    });
+
 });

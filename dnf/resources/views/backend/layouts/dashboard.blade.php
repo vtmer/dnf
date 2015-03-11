@@ -48,8 +48,9 @@
 		<div id="main-menu-inner">
 			<ul class="navigation">
 				<li>
-                    <a href=""><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">{{ Lang::get('backend.dashboard') }}</span></a>
+                    <a href="{{ route('backend_dashboard_index') }}"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">{{ Lang::get('backend.dashboard') }}</span></a>
 				</li>
+                {!! App\Widgets\Backend\MenuWidget::menu() !!}
 			</ul> <!-- / .navigation -->
 		</div> <!-- / #main-menu-inner -->
 	</div> <!-- / #main-menu -->

@@ -6,4 +6,26 @@ class Js
     {
         return redirect()->back()->with(['error' => $message]);
     }
+
+    /**
+     * ajax result
+     *
+     * @param string $message reason
+     * @param boolean $status ajax status
+     * @return json
+     */
+    public static function response($message = '', $status = true, $refresh = true)
+    {
+        $status = $status ? 'success' : 'failed';
+
+        return json_encode([
+            'status' => $status,
+            'message' => $message,
+            'refresh' => $refresh
+        ]);
+    }
+
+
+
+
 }
