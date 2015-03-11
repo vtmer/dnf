@@ -118,11 +118,10 @@ class AclController extends BaseController {
             return Js::response(Lang::get('params.10001'), false);
 
         $acl = AclModel::find($id);
-        if (!$acl) return Js::response(Lang::get('10004'), false);
+        if (!$acl) return Js::response(Lang::get('params.10004'), false);
         if(!AclModel::deleteById($id, $acl->pid)) return Js::response(Lang::get('params.10005'), false);
 
-        return Js::response($id);
+        return Js::response($id, true, false);
     }
-
 
 }

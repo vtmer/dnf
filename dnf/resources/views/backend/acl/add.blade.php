@@ -21,7 +21,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
-                        <label for="menu" class="col-sm-2 control-label">{{ Lang::get('backend.menu')}}</label>
+                        <label for="menu" class="col-sm-2 control-label">{{ Lang::get('backend.form.menu')}}</label>
                         <div class="col-sm-5">
                             <div class="has-feedback">
                                 <input type="text" class="form-control" name="name" id="menu" value="{{ $data->name or old('name') }}">
@@ -30,7 +30,7 @@
                         </div>
                     </div> <!-- / .form-group -->
                     <div class="form-group">
-                        <label for="module" class="col-sm-2 control-label">{{ Lang::get('backend.module')}}</label>
+                        <label for="module" class="col-sm-2 control-label">{{ Lang::get('backend.form.module')}}</label>
                         <div class="col-sm-5">
                             <div class="has-feedback">
                                 <input type="text" name="module" class="form-control" id="module" value="{{ $data->module or old('module') }}">
@@ -39,7 +39,7 @@
                         </div>
                     </div> <!-- / .form-group -->
                     <div class="form-group">
-                        <label for="class" class="col-sm-2 control-label">{{ Lang::get('backend.class')}}</label>
+                        <label for="class" class="col-sm-2 control-label">{{ Lang::get('backend.form.class')}}</label>
                         <div class="col-sm-5">
                             <div class="has-feedback">
                                 <input type="text" name="class" class="form-control" id="class" value="{{ $data->class or old('class') }}">
@@ -48,7 +48,7 @@
                         </div>
                     </div> <!-- / .form-group -->
                     <div class="form-group">
-                        <label for="function" class="col-sm-2 control-label">{{ Lang::get('backend.function')}}</label>
+                        <label for="function" class="col-sm-2 control-label">{{ Lang::get('backend.form.function')}}</label>
                         <div class="col-sm-5">
                             <div class="has-feedback">
                                 <input type="text" name="function" class="form-control" id="function" value="{{ $data->function or old('function') }}">
@@ -57,7 +57,7 @@
                         </div>
                     </div> <!-- / .form-group -->
                     <div class="form-group">
-                        <label for="parent-function" class="col-sm-2 control-label">{{ Lang::get('backend.parent-function') }}</label>
+                        <label for="parent-function" class="col-sm-2 control-label">{{ Lang::get('backend.form.parent-function') }}</label>
                         <div class="col-sm-5">
                             <div class="has-feedback">
                                 <select id="parent-function" name="pid" class="form-control">
@@ -79,7 +79,7 @@
                         </div>
                     </div> <!-- / .form-group -->
                     <div class="form-group">
-                        <label for="mark" class="col-sm-2 control-label">{{ Lang::get('backend.mark') }}</label>
+                        <label for="mark" class="col-sm-2 control-label">{{ Lang::get('backend.form.mark') }}</label>
                         <div class="col-sm-7">
                             <textarea id="mark" class="form-control" name="mark" >{{{ $data->mark or old('mark') }}}</textarea>
                             <div id="mark-limit-label" class="limiter-label">{{ Lang::get('backend.character-left') }} : <span class="limiter-count"></span></div>

@@ -19,7 +19,7 @@
                 <div class="row">
                     <hr class="visible-xs no-grid-gutter-h">
                     <!-- "Create project" button, width=auto on desktops -->
-                    <div class="pull-right col-xs-12 col-sm-auto">{!! App\Widgets\Backend\AclWidget::add(route('backend_system_acl_add'), 'system', 'acl', 'edit', Lang::get('backend.add-menu')) !!}</div>
+                    <div class="pull-right col-xs-12 col-sm-auto">{!! App\Widgets\Backend\AclWidget::add(route('backend_system_acl_add'), 'system', 'acl', 'add', Lang::get('backend.add-menu')) !!}</div>
                     <div class="visible-xs clearfix form-group-margin"></div>
                 </div>
             </div>
@@ -33,10 +33,10 @@
                         <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="aclList">
                             <thead>
                                 <tr>
-                                    <th>{{ Lang::get('backend.menu') }}</th>
-                                    <th>{{ Lang::get('backend.module') }}</th>
-                                    <th>{{ Lang::get('backend.class') }}</th>
-                                    <th>{{ Lang::get('backend.mark') }}</th>
+                                    <th>{{ Lang::get('backend.form.menu') }}</th>
+                                    <th>{{ Lang::get('backend.form.module') }}</th>
+                                    <th>{{ Lang::get('backend.form.class') }}</th>
+                                    <th>{{ Lang::get('backend.form.mark') }}</th>
                                     <th>{{ Lang::get('backend.create-time') }}</th>
                                     <th>{{ Lang::get('backend.update-time') }}</th>
                                     <th>{{ Lang::get('backend.operate') }}</th>
@@ -44,13 +44,13 @@
                             </thead>
                             <tbody>
                                 @foreach($datas as $data)
-                                <tr>
+                                <tr id="data-id-{{ $data->id }}">
                                     <td class="center">{{{ $data->name }}}</td>
                                     <td class="center">{{{ $data->module }}}</td>
                                     <td class="center">{{{ $data->class }}}</td>
                                     <td class="center">{{{ $data->mark }}}</td>
                                     <td class="center">{{{ $data->created_at }}}</td>
-                                    <td class="center">{{{ $data->update_at }}}</td>
+                                    <td class="center">{{{ $data->updated_at }}}</td>
                                     <td class="center">
                                         {!! App\Widgets\Backend\AclWidget::edit(route('backend_system_acl_edit', ['id' => $data->id]), 'system', 'acl', 'edit', null) !!}
                                         {!! App\Widgets\Backend\AclWidget::delete(route('backend_system_acl_delete', false), 'system', 'acl', 'delete', 'aclList',  $data->id ) !!}
