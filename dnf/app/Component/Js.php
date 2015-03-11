@@ -14,18 +14,16 @@ class Js
      * @param boolean $status ajax status
      * @return json
      */
-    public static function response($message = '', $status = true, $refresh = true)
+    public static function response($message = '', $status = true, $refresh = true, $data = '')
     {
         $status = $status ? 'success' : 'failed';
 
         return json_encode([
             'status' => $status,
             'message' => $message,
-            'refresh' => $refresh
+            'refresh' => $refresh,
+            'data' => $data,
         ]);
     }
-
-
-
 
 }
