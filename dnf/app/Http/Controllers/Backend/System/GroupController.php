@@ -146,7 +146,7 @@ class GroupController extends BaseController {
             return Js::response(Lang::get('params.10007'), false);
 
         // 该用户所属用户组level是否高于操作Group
-        if (!GroupModel::hasGroupLevelPermission(array($id), Auth::user()))
+        if (!GroupModel::hasGroupLevelPermission($id, Auth::user()))
             return Js::response(Lang::get('params.10006'), false);
 
         // 保存
