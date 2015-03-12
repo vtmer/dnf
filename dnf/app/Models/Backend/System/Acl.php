@@ -38,6 +38,9 @@ class Acl extends BaseModel {
         }
 
         $ids[] = $id;
+
+        // 删除access中的关联数据
+        Access::whereIn('permission_id', $ids)->delete();
         return static::destroy($ids);
     }
 
@@ -101,6 +104,25 @@ class Acl extends BaseModel {
         }
 
         // TODO: 非超级管理员的菜单
+    }
+
+    /**
+     * 获取全部菜单:总共三级
+     *
+     * @return array
+     */
+    public static function getAllMenu()
+    {
+        // 二层菜单
+        $tlMenus = static::menu();
+        foreach ($tlMenus as $topKey => $topMenu) {
+            foreach ($topMenu['sub'] as $subKey => $subMenu) {
+            $tlMenus[$topKey]['sub'][$subKey]['sub'] =
+                static::where('pid', '=', $subMenu->id)->get();
+            }
+        }
+
+        return $tlMenus;
     }
 
 }

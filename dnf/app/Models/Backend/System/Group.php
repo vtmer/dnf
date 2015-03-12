@@ -51,6 +51,8 @@ class Group extends BaseModel {
         // $deleteUser = static::whereIn('id', $ids)->users()->delete();
         $deleteUser = true;
 
+        Access::where('role_id', $id)->where('type', Access::groupType)->delete();
+
         if ($deleteUser)
             return static::destroy($id);
 
