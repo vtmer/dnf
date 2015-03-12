@@ -128,6 +128,17 @@ Route::group(['prefix' => 'backend'], function() {
                 'uses' => 'Backend\System\GroupController@_changeStatus'
             ]);
 
+            # 页面：用户组权限
+            Route::get('/acl', [
+                'as' => 'backend_system_group_acl',
+                'uses' => 'Backend\System\GroupController@acl'
+            ]);
+            # 动作J：用户组权限保存
+            Route::post('/acl', [
+                'as' => 'backend_system_group_acl',
+                'uses' => 'Backend\System\GroupController@_acl'
+            ]);
+
         });
     });
 

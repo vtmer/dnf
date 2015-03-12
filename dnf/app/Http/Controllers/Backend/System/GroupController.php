@@ -7,6 +7,7 @@ use Request;
 use Input;
 use Auth;
 use Lang;
+use App\Models\Backend\System\Access as AccessModel;
 use App\Component\Acl;
 use App\Http\Requests\GroupRequest;
 use App\Http\Controllers\Backend\BaseController;
@@ -96,6 +97,59 @@ class GroupController extends BaseController {
         if (!$group) return Js::error(Lang::get('backend.none-data'));
 
         $group->update($data);
+
+        return redirect()->route('backend_system_group_index');
+    }
+
+    /**
+     * 页面：用户组权限
+     *
+     * @return Response
+     */
+    public function acl()
+    {
+        $id = Request::get('id');
+        $group = GroupModel::find($id);
+
+        // 不允许改变root group status
+        if ($id == GroupModel::rootGroupId)
+            return Js::error(Lang::get('params.10007'));
+
+        // 用户的用户组level判断
+        if (!GroupModel::hasGroupLevelPermission($id, Auth::user()))
+            return Js::response(Lang::get('params.10006'), false);
+
+        if (null == $group) return Js::error(Lang::get('backend.none-data'));
+        $menus = AclModel::getAllMenu();
+
+        return view('backend.group.acl', [
+            'formUrl' => route('backend_system_group_acl'),
+            'menus' => $menus,
+            'data' => $group,
+            'permission' => AccessModel::getUserPermission(Auth::user()->id),
+        ]);
+    }
+
+    /**
+     * 动作：设置用户组权限
+     *
+     * @return Response
+     */
+    public function _acl()
+    {
+        $permissions = Input::get('permission', []);
+        $id = Input::get('id', false);
+
+        if (!$id || !is_numeric($id)) return Js::error(Lang::get('params.10001'));
+
+        // 用户的用户组level判断
+        if (!GroupModel::hasGroupLevelPermission($id, Auth::user()))
+            return Js::error(Lang::get('params.10006'));
+
+        $permissions = array_unique($permissions);
+        $permissions = array_map('intval', $permissions);
+        if (!AccessModel::setPermission($permissions, $id))
+            return Js::error(Lang::get('params.10008'));
 
         return redirect()->route('backend_system_group_index');
     }
