@@ -30,6 +30,28 @@ class AclWidget
     }
 
     /**
+     * 生成文字button
+     *
+     * @param $formUrl
+     * @param string $module
+     * @param string $class
+     * @param string $function
+     * @param string $buttonName
+     *
+     */
+    public static function button($formUrl, $module, $class, $function, $buttonName)
+    {
+        $hasAcl = static::_hasPermission($module, $class, $function);
+
+        $htmlChange = $hasAcl ?
+            '<a href="'.$formUrl.'" class="btn btn-primary btn-rounded">'
+            .$buttonName.'</a>' :
+            '<a class="btn btn-primary btn-rounded disabled">'.$buttonName.'</a></div>';
+
+        return $htmlChange;
+    }
+
+    /**
      * 生成add Button
      *
      * @param $formUrl
@@ -43,9 +65,9 @@ class AclWidget
 
         $htmlAdd = $hasAcl ?
             '<a href="'.$formUrl.'" class="btn btn-primary btn-labeled" style="width:
-            100%;"><span class="btn-label icon fa fa-plus"></span>'.$buttonName.'</a></div>' :
+            100%;"><span class="btn-label icon fa fa-plus"></span>'.$buttonName.'</a>' :
             '<a class="btn btn-primary btn-labeled disabled" style="width: 100%;">
-            <span class="btn-label icon fa fa-plus"></span>'.$buttonName.'</a></div>';
+            <span class="btn-label icon fa fa-plus"></span>'.$buttonName.'</a>';
 
         return $htmlAdd;
     }
