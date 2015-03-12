@@ -70,3 +70,33 @@ function ajaxChange(url, buttonId, id)
         className: "bootbox-sm"
     });
 }
+
+
+/*
+ * 权限全选
+ */
+function selectAllPermission(checker, scope, type)
+{
+    if(scope) {
+        if(type == 'button') {
+            $('#' + scope + ' input').each(function() {
+                $(this).attr("checked", true)
+            });
+        }
+        else if(type == 'checkbox') {
+            $('#' + scope + ' input').each(function() {
+                $(this).attr("checked", checker.checked)
+            });
+         }
+    } else {
+        if(type == 'button') {
+            $('input:checkbox').each(function() {
+                $(this).attr("checked", true)
+            });
+        } else if(type == 'checkbox') {
+            $('input:checkbox').each(function() {
+                $(this).attr("checked", checker.checked)
+            });
+        }
+    }
+}
