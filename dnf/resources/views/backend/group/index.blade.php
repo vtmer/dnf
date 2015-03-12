@@ -55,6 +55,7 @@
                                     <td class="center">{{{ $data->updated_at }}}</td>
                                     <td class="center">
                                         {!! App\Widgets\Backend\AclWidget::edit(route('backend_system_group_edit', ['id' => $data->id]), 'system', 'group', 'edit', null) !!}
+                                        {!! App\Widgets\Backend\AclWidget::button(route('backend_system_group_acl', ['id' => $data->id]), 'system', 'group', 'acl', Lang::get('backend.acl-set')) !!}
                                         {!! App\Widgets\Backend\AclWidget::delete(route('backend_system_group_delete', false), 'system', 'group', 'delete', 'groupList',  $data->id ) !!}
                                     </td>
                                 </tr>

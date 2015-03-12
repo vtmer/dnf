@@ -44,7 +44,7 @@
                             </thead>
                             <tbody>
                                 @foreach($datas as $data)
-                                <tr id="data-id-{{ $data->id }}">
+                                <tr id="aclList-data-id-{{ $data->id }}">
                                     <td class="center">{{{ $data->name }}}</td>
                                     <td class="center">{{{ $data->module }}}</td>
                                     <td class="center">{{{ $data->class }}}</td>

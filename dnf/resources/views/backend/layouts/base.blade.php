@@ -1,3 +1,4 @@
+<html class="gt-ie8 gt-ie9 not-ie pxajs">
 <head>
 	<meta charset="utf-6">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
