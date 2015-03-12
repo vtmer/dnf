@@ -19,7 +19,7 @@
                 <div class="row">
                     <hr class="visible-xs no-grid-gutter-h">
                     <!-- "Create project" button, width=auto on desktops -->
-                    <div class="pull-right col-xs-12 col-sm-auto">{!! App\Widgets\Backend\AclWidget::add(route('backend_system_acl_add'), 'system', 'acl', 'add', Lang::get('backend.add-menu')) !!}</div>
+                    <div class="pull-right col-xs-12 col-sm-auto">{!! App\Widgets\Backend\AclWidget::add(route('backend_system_group_add'), 'system', 'group', 'add', Lang::get('backend.add-group')) !!}</div>
                     <div class="visible-xs clearfix form-group-margin"></div>
                 </div>
             </div>
@@ -30,13 +30,13 @@
             <div class="panel">
                 <div class="panel-body">
                     <div class="table-primary">
-                        <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="aclList">
+                        <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="groupList">
                             <thead>
                                 <tr>
-                                    <th>{{ Lang::get('backend.form.menu') }}</th>
-                                    <th>{{ Lang::get('backend.form.module') }}</th>
-                                    <th>{{ Lang::get('backend.form.class') }}</th>
+                                    <th>{{ Lang::get('backend.form.group') }}</th>
                                     <th>{{ Lang::get('backend.form.mark') }}</th>
+                                    <th>{{ Lang::get('backend.form.status') }}</th>
+                                    <th>{{ Lang::get('backend.form.group-level') }}</th>
                                     <th>{{ Lang::get('backend.create-time') }}</th>
                                     <th>{{ Lang::get('backend.update-time') }}</th>
                                     <th>{{ Lang::get('backend.operate') }}</th>
@@ -44,16 +44,19 @@
                             </thead>
                             <tbody>
                                 @foreach($datas as $data)
-                                <tr id="aclList-data-id-{{ $data->id }}">
+                                <tr id="groupList-data-id-{{ $data->id }}">
                                     <td class="center">{{{ $data->name }}}</td>
-                                    <td class="center">{{{ $data->module }}}</td>
-                                    <td class="center">{{{ $data->class }}}</td>
                                     <td class="center">{{{ $data->mark }}}</td>
+                                    <td class="center">
+                                        {!! App\Widgets\Backend\AclWidget::change(route('backend_system_group_change-status'), 'system', 'group', 'change-status', Lang::get('backend.button-status.status.'.$data->status), 'status-id-'.$data->id, $data->id) !!}
+                                    </td>
+                                    <td class="center">{{{ $data->level }}}</td>
                                     <td class="center">{{{ $data->created_at }}}</td>
                                     <td class="center">{{{ $data->updated_at }}}</td>
                                     <td class="center">
-                                        {!! App\Widgets\Backend\AclWidget::edit(route('backend_system_acl_edit', ['id' => $data->id]), 'system', 'acl', 'edit', null) !!}
-                                        {!! App\Widgets\Backend\AclWidget::delete(route('backend_system_acl_delete', false), 'system', 'acl', 'delete', 'aclList',  $data->id ) !!}
+                                        {!! App\Widgets\Backend\AclWidget::edit(route('backend_system_group_edit', ['id' => $data->id]), 'system', 'group', 'edit', null) !!}
+                                        {!! App\Widgets\Backend\AclWidget::button(route('backend_system_group_acl', ['id' => $data->id]), 'system', 'group', 'acl', Lang::get('backend.acl-set')) !!}
+                                        {!! App\Widgets\Backend\AclWidget::delete(route('backend_system_group_delete', false), 'system', 'group', 'delete', 'groupList',  $data->id ) !!}
                                     </td>
                                 </tr>
                                 @endforeach
@@ -73,10 +76,10 @@
     @parent
     <script type="text/javascript">
         init.push(function () {
-            $('#aclList').dataTable();
-            $('#aclList_wrapper .table-caption').text('Some header text');
-            $('#aclList_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
-            $('#aclList_wrapper .dataTables_empty').text('No data !');
+            $('#groupList').dataTable();
+            $('#groupList_wrapper .table-caption').text('Some header text');
+            $('#groupList_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
+            $('#groupList_wrapper .dataTables_empty').text('No data !');
         });
         window.PixelAdmin.start(init);
     </script>

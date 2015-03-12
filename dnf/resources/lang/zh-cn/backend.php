@@ -9,6 +9,7 @@ return [
     'username' => '用户名',
     'password' => '密码',
     'add-menu'=> '增加功能菜单',
+    'add-group'=> '增加用户组',
     'save' => '保存',
     'character-left' => '字符剩余长度',
     'sort' => '排序',
@@ -19,15 +20,34 @@ return [
     'none-data' => '数据不存在',
     'edit' => '编辑',
     'delete' => '删除',
+    'change' => '改变',
+    'option' => '选项',
+    'acl-set' => '权限设置',
+    'return' => "返回",
+    'all-select' => "全选",
+
+    # status button
+    'button-status' => [
+        # 状态
+        'status' => [
+            0 => '禁止',
+            1 => '正常',
+        ],
+    ],
 
 
     # Form Label
-    'menu' => '菜单名',
-    'module' => '模块名',
-    'class' => '类名',
-    'function' => '函数名',
-    'parent-function' => '父级功能',
-    'mark' => '备注',
+    'form' => [
+        'menu' => '菜单名',
+        'module' => '模块名',
+        'class' => '类名',
+        'function' => '函数名',
+        'parent-function' => '父级功能',
+        'mark' => '备注',
+        'status' => '状态',
+        'group' => '用户组名',
+        'group-level' => '用户组等级',
+    ],
 
     # website page title
     'title' => [
@@ -44,6 +64,8 @@ return [
         'about-module' => '如果涉及模块名，那么请填写，否则可以不填写',
         'select-parent' => '请选择父级功能',
         'cant-change' => '不可更改',
+        'confirm' => '确定此操作吗?',
+        'select-all' => '点击我全选',
     ],
 
     # rules messages
@@ -64,6 +86,10 @@ return [
         ],
         'integer' => [
             'pid' => '父级菜单值数据类型错误',
-        ]
+            'level' => '等级数据类型错误',
+        ],
+        'between' => [
+            'level' => '等级范围为',
+        ],
     ],
 ];

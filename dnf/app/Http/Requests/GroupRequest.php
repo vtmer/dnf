@@ -5,7 +5,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Request;
 use Lang;
 
-class AclRequest extends FormRequest {
+class GroupRequest extends FormRequest {
 
     /**
      * Determine if the user is authorized to make this request.
@@ -26,10 +26,7 @@ class AclRequest extends FormRequest {
     {
         return [
             'name' => "required|max:50|unique:admin_permission,name",
-            'module' => 'max:20',
-            'class' => 'required',
-            'function' => 'required',
-            'pid' => 'integer',
+            'level' => 'integer|between:0,1000',
             'mark' => 'max:100',
         ];
     }
@@ -46,10 +43,8 @@ class AclRequest extends FormRequest {
             'name.required' => $rules['required']['name'],
             'name.unique' => $rules['unique']['name'],
             'name.max' => $rules['max']['name'].'50',
-            'module.max' => $rules['max']['module'].'20',
-            'class.required' => $rules['required']['class'],
-            'function.required' => $rules['required']['function'],
-            'pid.integer' => $rules['integer']['pid'],
+            'level.integer' => $rules['integer']['level'],
+            'level.between' => $rules['between']['level'].':min ~ :max',
             'mark.max' => $rules['max']['mark'].'100',
         ];
     }

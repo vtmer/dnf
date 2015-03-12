@@ -7,6 +7,51 @@ class AclWidget
 {
 
     /**
+     * 生成状态改变的文字button
+     *
+     * @param $formUrl
+     * @param string $module
+     * @param string $class
+     * @param string $function
+     * @param string $buttonName
+     *
+     */
+    public static function change($formUrl, $module, $class, $function, $buttonName, $buttonId, $id)
+    {
+        $hasAcl = static::_hasPermission($module, $class, $function);
+
+        $htmlChange = $hasAcl ?
+            '<a id="'.$buttonId.'" title="'.Lang::get('backend.change').'"
+            href="javascript:ajaxChange(\''.$formUrl.'\', \''.$buttonId.'\', \''.$id.'\')"'.
+            ' class="btn btn-primary btn-rounded">'.$buttonName.'</a>' :
+            '<button class="btn btn-primary btn-rounded disabled">'.$buttonName.'</button>';
+
+        return $htmlChange;
+    }
+
+    /**
+     * 生成文字button
+     *
+     * @param $formUrl
+     * @param string $module
+     * @param string $class
+     * @param string $function
+     * @param string $buttonName
+     *
+     */
+    public static function button($formUrl, $module, $class, $function, $buttonName)
+    {
+        $hasAcl = static::_hasPermission($module, $class, $function);
+
+        $htmlChange = $hasAcl ?
+            '<a href="'.$formUrl.'" class="btn btn-primary btn-rounded">'
+            .$buttonName.'</a>' :
+            '<a class="btn btn-primary btn-rounded disabled">'.$buttonName.'</a></div>';
+
+        return $htmlChange;
+    }
+
+    /**
      * 生成add Button
      *
      * @param $formUrl
@@ -20,9 +65,9 @@ class AclWidget
 
         $htmlAdd = $hasAcl ?
             '<a href="'.$formUrl.'" class="btn btn-primary btn-labeled" style="width:
-            100%;"><span class="btn-label icon fa fa-plus"></span>'.$buttonName.'</a></div>' :
+            100%;"><span class="btn-label icon fa fa-plus"></span>'.$buttonName.'</a>' :
             '<a class="btn btn-primary btn-labeled disabled" style="width: 100%;">
-            <span class="btn-label icon fa fa-plus"></span>'.$buttonName.'</a></div>';
+            <span class="btn-label icon fa fa-plus"></span>'.$buttonName.'</a>';
 
         return $htmlAdd;
     }
@@ -61,8 +106,8 @@ class AclWidget
         $htmlDel = $hasAcl ?
             '<a title="'.Lang::get('backend.delete').'"
             href="javascript:ajaxDelete(\''.$formUrl.'\', \''.$tableList.'\', \''.$data.'\')"'.
-            ' class="btn btn-primary btn-rounded"><i class="fa fa-pencil"></i></a>' :
-            '<button class="btn btn-primary btn-rounded disabled"><i class="fa fa-pencil"></i></button>';
+            ' class="btn btn-primary btn-rounded"><i class="fa fa-times-circle"></i></a>' :
+            '<button class="btn btn-primary btn-rounded disabled"><i class="fa fa-times-circle"></i></button>';
 
         return $htmlDel;
     }
