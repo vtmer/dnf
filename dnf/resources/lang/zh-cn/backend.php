@@ -21,6 +21,10 @@ return [
     'edit' => '编辑',
     'delete' => '删除',
     'change' => '改变',
+    'option' => '选项',
+    'acl-set' => '权限设置',
+    'return' => "返回",
+    'all-select' => "全选",
 
     # status button
     'button-status' => [
@@ -61,6 +65,7 @@ return [
         'select-parent' => '请选择父级功能',
         'cant-change' => '不可更改',
         'confirm' => '确定此操作吗?',
+        'select-all' => '点击我全选',
     ],
 
     # rules messages
