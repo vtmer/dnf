@@ -1,6 +1,7 @@
 <?php namespace App\Models\Backend\System;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Backend\User;
 use App\Models\Backend\BaseModel;
 
 class Group extends BaseModel {
@@ -23,12 +24,12 @@ class Group extends BaseModel {
      */
     public static function hasGroupLevelPermission($id, $user)
     {
-        // TODO
-        // $groupLevel = $user->group()->level;
-        $userGroupLevel = 100;
+        if ($user->id == User::rootId) return true;
+
+        $userGroupLevel = $user->group->level;
 
         $group = static::find($id);
-        if ($group->level >= $userGroupLevel) return false;
+        if ($group->level > $userGroupLevel) return false;
 
         return true;
     }
@@ -41,22 +42,22 @@ class Group extends BaseModel {
      */
     public static function deleteById($id, $uId)
     {
-        // TODO
-        // $userGroupId = $user->group()->id;
-        $userGroupId = 1;
-        if ($userGroupId == $id)
-            return false;
+        // 改组下用户
+        $users = static::find($id)->users();
 
-        // TODO 删除该组下用户
-        // $deleteUser = static::whereIn('id', $ids)->users()->delete();
-        $deleteUser = true;
+        $userIdArr = [];
+        foreach ($users as $user) {
+            $userIdArr[] = $user->id;
+        }
 
+        // 删除权限
         Access::where('role_id', $id)->where('type', Access::groupType)->delete();
+        Access::whereIn('role_id', $userIdArr)->where('type', Access::userType)->delete();
 
-        if ($deleteUser)
-            return static::destroy($id);
+        // 删除该组下用户
+        Access::destroy($userIdArr);
 
-        return false;
+        return static::destroy($id);
     }
 
     /**
@@ -67,8 +68,7 @@ class Group extends BaseModel {
      */
     public function users()
     {
-        // TODO
-        //return $this->hasMany('User','group_id');
+        return $this->hasMany('App\Models\Backend\User','id','group_id');
     }
 
 
