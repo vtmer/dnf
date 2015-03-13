@@ -1,6 +1,7 @@
 <?php namespace App\Models\Backend\System;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Backend\User;
 use App\Models\Backend\BaseModel;
 
 class Acl extends BaseModel {
@@ -99,11 +100,31 @@ class Acl extends BaseModel {
      */
     public static function getMenuByUid($uId)
     {
-        if (1 == $uId) {
+        if (User::rootId == $uId) {
             return static::menu();
         }
 
-        // TODO: 非超级管理员的菜单
+        $user = User::find($uId);
+
+        // 先根据用户读取menu
+        $accesses = Access::where('role_id', $uId)->where('type', Access::userType)->get();
+        if ($accesses->isEmpty()) {
+            $accesses = Access::where('role_id', $user->group->id)
+                            ->where('type', Access::groupType)->get();
+        }
+
+
+        $aclArr = [];
+        foreach ($accesses as $access) $aclArr[] = $access->permission_id;
+
+        # 顶级菜单
+         $menus = static::whereIn('id', $aclArr)->where('pid', 0)->get();
+        foreach ($menus as $key => $menu) {
+            $menus[$key]['sub'] = static::whereIn('id', $aclArr)->where('pid', $menu->id)->get();
+        }
+
+        return $menus;
+
     }
 
     /**
@@ -123,6 +144,24 @@ class Acl extends BaseModel {
         }
 
         return $tlMenus;
+    }
+
+    /**
+     * 获取全部权限，构造key-value
+     *
+     * @return array
+     */
+    public static function getAllAcl()
+    {
+        $menus = static::all();
+
+        $acls = [];
+        foreach ($menus as $menu) {
+            $key = implode('_', [$menu->module, $menu->class, $menu->function]);
+            $acls[$key] = $menu->id;
+        }
+
+        return $acls;
     }
 
 }
