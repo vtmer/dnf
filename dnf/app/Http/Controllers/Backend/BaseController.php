@@ -11,6 +11,7 @@ class BaseController extends Controller {
     public function __construct()
     {
         $this->middleware('admin.auth');
+        $this->middleware('acl.auth');
     }
 
 }
