@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers\Backend\System;
 
 use App\Models\Backend\System\Acl as AclModel;
+use App\Models\Backend\System\Action as ActionModel;
 use App\Component\Js;
 use Request;
 use Input;
@@ -60,6 +61,8 @@ class AclController extends BaseController {
         if (!isset($acl->id))
             return Js::error(Lang::get('backend.save-failed'));
 
+        // 写入操作
+        ActionModel::createOneAction('1', $acl->name);
         return redirect()->route('backend_system_acl_index');
     }
 
@@ -100,6 +103,8 @@ class AclController extends BaseController {
             $data['level'] = $parentMenu->level + 1;
         }
 
+        // 写入操作
+        ActionModel::createOneAction('2', $acl->name, $acl->name. " => ".$data['name']);
         $acl->update($data);
 
         return redirect()->route('backend_system_acl_index');
@@ -121,6 +126,8 @@ class AclController extends BaseController {
         if (!$acl) return Js::response(Lang::get('params.10004'), false);
         if(!AclModel::deleteById($id, $acl->pid)) return Js::response(Lang::get('params.10005'), false);
 
+        // 写入操作
+        ActionModel::createOneAction('3', $acl->name);
         return Js::response($id, true, false);
     }
 
