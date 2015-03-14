@@ -30,8 +30,10 @@ class Acl
             Cache::add('permissions', $permissions, $expiresAt);
             Cache::add('acls', $acls, $expiresAt);
         } else {
-            $permissions = Cache::get('permissions');
-            $acls = Cache::get('acls');
+            $cachePermissions = Cache::get('permissions');
+            $cacheAcls = Cache::get('acls');
+            $permissions = null == $cachePermissions ? [] : $cachePermissions;
+            $acls = null == $cacheAcls ? [] : $cacheAcls;
         }
 
         $key = implode('_', [$module, $class, $function]);
