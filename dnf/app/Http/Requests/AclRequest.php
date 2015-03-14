@@ -25,7 +25,7 @@ class AclRequest extends FormRequest {
     public function rules()
     {
         return [
-            'name' => "required|max:50|unique:admin_permission,name",
+            'name' => "required|max:50|unique:admin_permission,name,".Request::get('id'),
             'module' => 'max:20',
             'class' => 'required',
             'function' => 'required',

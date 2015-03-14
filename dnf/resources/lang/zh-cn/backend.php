@@ -10,6 +10,10 @@ return [
     'password' => '密码',
     'add-menu'=> '增加功能菜单',
     'add-group'=> '增加用户组',
+    'add-user'=> '增加用户',
+    'edit-user'=> '编辑用户',
+    'edit-self'=> '编辑个人信息',
+    'account' => '帐号',
     'save' => '保存',
     'character-left' => '字符剩余长度',
     'sort' => '排序',
@@ -47,6 +51,13 @@ return [
         'status' => '状态',
         'group' => '用户组名',
         'group-level' => '用户组等级',
+        'user' => '用户名',
+        'realname' => '真实姓名',
+        'last-login-time' => '最后登陆时间',
+        'mobile' => '电话',
+        'password' => '密码',
+        'old-password' => '原密码',
+        'password-confirmation' => '重复密码',
     ],
 
     # website page title
@@ -63,6 +74,7 @@ return [
     'messages' => [
         'about-module' => '如果涉及模块名，那么请填写，否则可以不填写',
         'select-parent' => '请选择父级功能',
+        'select-group' => '请选择用户组',
         'cant-change' => '不可更改',
         'confirm' => '确定此操作吗?',
         'select-all' => '点击我全选',
@@ -80,6 +92,8 @@ return [
             'module' => '模块名不为空',
             'class' => '类名不为空',
             'function' => '函数名不为空',
+            'realname' => "真实名称",
+            'group-id' => '用户组ID不为空',
         ],
         'unique' => [
             'name' => '名称必须唯一',
@@ -87,9 +101,17 @@ return [
         'integer' => [
             'pid' => '父级菜单值数据类型错误',
             'level' => '等级数据类型错误',
+            'mobile' => '电话',
+            'group-id' => '用户组ID数据类型错误',
         ],
         'between' => [
+            'name' => '名称长度范围为',
             'level' => '等级范围为',
+            'mobile' => '电话范围为',
+            'password' => '密码长度范围为',
         ],
+        'confirmed' => [
+            'password' => '密码前后不一致',
+        ]
     ],
 ];

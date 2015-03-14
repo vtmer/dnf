@@ -5,6 +5,7 @@ CREATE TABLE `dnf_admin_access` (
   `permission_id` int(11) NOT NULL COMMENT '节点的ID',
   `type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '标识是用户组还是用户 1为用户组 2为用户,默认为用户组',
   `is_deleted` int(11) NOT NULL DEFAULT '0',
+  `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='权限表' ;
@@ -22,7 +23,8 @@ CREATE TABLE `dnf_admin_permission` (
   `sort` int(11) DEFAULT '0' COMMENT '排序',
   `level` tinyint(2) NOT NULL DEFAULT '1' COMMENT '第几级菜单',
   `mark` varchar(255) DEFAULT NULL COMMENT '备注',
-  `created_at` bigint(20) DEFAULT NULL COMMENT '增加的日期',
+  `created_at` int(11) NOT NULL,
+  `updated_at` int(11) NOT NULL,
   `is_deleted` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否删除(0未删除 1删除)',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='权限节点表';
@@ -37,8 +39,8 @@ CREATE TABLE `dnf_admin_users` (
   `group_id` int(11) NOT NULL,
   `realname` varchar(255) DEFAULT '' COMMENT '真实性名',
   `token` varchar(255) NOT NULL COMMENT '用户注册时的密钥',
-  `created_at` bigint(20) NOT NULL COMMENT '用户注册的时间',
-  `updated_at` bigint(20) DEFAULT NULL COMMENT '用户信息所修改的时间',
+  `created_at` int(11) NOT NULL,
+  `updated_at` int(11) NOT NULL,
   `mobile` varchar(11) DEFAULT NULL COMMENT '手机',
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '用户禁用0正常的1',
   `mark` varchar(255) DEFAULT '' COMMENT '备注',
@@ -56,7 +58,9 @@ INSERT INTO `dnf_admin_users` (`id`, `name`, `password`, `group_id`, `realname`,
 DROP TABLE IF EXISTS `dnf_admin_user_groups`;
 CREATE TABLE IF NOT EXISTS `dnf_admin_user_groups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `group_name` varchar(255) NOT NULL COMMENT '用户组名',
+  `name` varchar(255) NOT NULL COMMENT '用户组名',
+  `created_at` int(11) NOT NULL,
+  `updated_at` int(11) NOT NULL,
   `mark` varchar(255) DEFAULT NULL COMMENT '备注',
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否禁用',
   `level` int(11) NOT NULL DEFAULT '0' COMMENT '用户组等级，低等级的不能对高等级的用户做修改',
@@ -64,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `dnf_admin_user_groups` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='用户组表' ;
 
-INSERT INTO `dnf_admin_user_groups` (`id`, `group_name`, `mark`, `status`, `level`, `is_deleted`) VALUES
-(1, '超级用户组', '123123', 1, 1, 0);
+INSERT INTO `dnf_admin_user_groups` (`id`, `name`, `created_at`, `updated_at`, `mark`, `status`, `level`, `is_deleted`) VALUES
+(1, '超级用户组', '', '', '123123', 1, 999, 0);
 
 

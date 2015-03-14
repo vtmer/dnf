@@ -36,6 +36,7 @@
                                     <th>{{ Lang::get('backend.form.menu') }}</th>
                                     <th>{{ Lang::get('backend.form.module') }}</th>
                                     <th>{{ Lang::get('backend.form.class') }}</th>
+                                    <th>{{ Lang::get('backend.form.function') }}</th>
                                     <th>{{ Lang::get('backend.form.mark') }}</th>
                                     <th>{{ Lang::get('backend.create-time') }}</th>
                                     <th>{{ Lang::get('backend.update-time') }}</th>
@@ -48,6 +49,7 @@
                                     <td class="center">{{{ $data->name }}}</td>
                                     <td class="center">{{{ $data->module }}}</td>
                                     <td class="center">{{{ $data->class }}}</td>
+                                    <td class="center">{{{ $data->function }}}</td>
                                     <td class="center">{{{ $data->mark }}}</td>
                                     <td class="center">{{{ $data->created_at }}}</td>
                                     <td class="center">{{{ $data->updated_at }}}</td>

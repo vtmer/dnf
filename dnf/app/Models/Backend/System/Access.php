@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Backend\BaseModel;
+use App\Models\Backend\User;
+use Auth;
 
 class Access extends BaseModel {
 
@@ -47,13 +49,63 @@ class Access extends BaseModel {
     }
 
     /**
-     * 获取用户的权限
+     * 根据type获取用户的权限
      *
      * @return array
      */
-    public static function getUserPermission($uId)
+    public static function getPermissionByType($roleId, $type = self::groupType)
     {
-        # TODO Get user Permission
-        return [0,1];
+        $acls = static::where('role_id', $roleId)->where('type', $type)->get();
+
+        $permissions = [];
+        foreach ($acls as $acl) {
+            $permissions[] = $acl->permission_id;
+        }
+
+        return $permissions;
     }
+
+    /**
+     * 获取当前用户的权限
+     *
+     * @return array 用户的权限 | 该用户的用户组权限
+     */
+    public static function getPermission()
+    {
+        $permissions = static::getPermissionByType(Auth::user()->id, static::userType);
+        if (empty($permissions)) {
+            $permissions = static::getPermissionByType(Auth::user()->group->id, static::groupType);
+        }
+
+        return $permissions;
+    }
+
+    /**
+     * 检查是否有权限访问当前路由
+     *
+     * @param string $routeName
+     * @return boolean
+     */
+    public static function hasRoutePermission($routeName)
+    {
+        if (Auth::user()->isRoot()) return true;
+
+        $currentAcl = explode("_", $routeName);
+        $module = $currentAcl[1];
+        $class = $currentAcl[2];
+        $function = $currentAcl[3];
+
+        // 用户的permission
+        $permissions = static::getPermission();
+        // 当前请求的permision
+        $acl = Acl::where('module', $module)
+            ->where('class', $class)
+            ->where('function', $function)->first();
+        if ($acl) {
+            return in_array($acl->id, $permissions);
+        }
+
+        return false;
+    }
+
 }

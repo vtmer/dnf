@@ -2,6 +2,7 @@
 
 use App\Models\Backend\System\Acl as AclModel;
 use App\Models\Backend\System\Group as GroupModel;
+use App\Models\Backend\User as UserModel;
 use App\Component\Js;
 use Request;
 use Input;
@@ -65,9 +66,8 @@ class GroupController extends BaseController {
         $id = Request::get('id');
         $group = GroupModel::find($id);
 
-        // TODO 1 改为 UserModel::rootId
         # 只有root 才可以编辑 root group
-        if ($id == GroupModel::rootGroupId && Auth::user()->id != 1)
+        if ($id == GroupModel::rootGroupId && !Auth::user()->isRoot())
             return Js::error(Lang::get('params.10007'));
 
 
@@ -88,9 +88,8 @@ class GroupController extends BaseController {
     {
         $data = array_except(Input::all(), '_token');
 
-        // TODO 1 改为 UserModel::rootId
         # 只有root 才可以编辑 root group
-        if ($data['id'] == GroupModel::rootGroupId && Auth::user()->id != 1)
+        if ($data['id'] == GroupModel::rootGroupId && !Auth::user()->isRoot())
             return Js::error(Lang::get('params.10007'));
 
         $group = GroupModel::find($data['id']);
@@ -111,8 +110,8 @@ class GroupController extends BaseController {
         $id = Request::get('id');
         $group = GroupModel::find($id);
 
-        // 不允许改变root group status
-        if ($id == GroupModel::rootGroupId)
+        // 只允许root 修改 root group 的权限
+        if ($id == GroupModel::rootGroupId && !Auth::user()->isRoot())
             return Js::error(Lang::get('params.10007'));
 
         // 用户的用户组level判断
@@ -126,7 +125,7 @@ class GroupController extends BaseController {
             'formUrl' => route('backend_system_group_acl'),
             'menus' => $menus,
             'data' => $group,
-            'permission' => AccessModel::getUserPermission(Auth::user()->id),
+            'permission' => AccessModel::getPermissionByType($group->id),
         ]);
     }
 
@@ -165,8 +164,8 @@ class GroupController extends BaseController {
         $id = Input::get('id', false);
         if (!$id || !is_numeric($id)) return Js::response(Lang::get('params.10001'), false);
 
-        # 不允许删除root group
-        if ($id == GroupModel::rootGroupId)
+        # 不允许删除root group 和用户当前的用户组
+        if ($id == GroupModel::rootGroupId || $id == Auth::user()->group->id)
             return Js::response(Lang::get('params.10007'), false);
 
 

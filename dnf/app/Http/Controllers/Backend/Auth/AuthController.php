@@ -34,10 +34,21 @@ class AuthController extends Controller {
 
         if (!$username || !$password)
             return Js::error(Lang::get('params.10001'));
-        if (!User::hasUserByName($username))
-            return Js::error(Lang::get('params.10002'));
-        if (Auth::attempt(['name' => $username, 'password' => $password]))
+
+        $user = User::hasUserByName($username);
+        if (!$user) return Js::error(Lang::get('params.10002'));
+
+        // 是否禁止登陆
+        if (!$user->status || !$user->group->status)
+            return Js::error(Lang::get('params.10009'));
+
+
+        if (Auth::attempt(['name' => $username, 'password' => $password])) {
+            $user->last_login_time = time();
+            $user->last_login_ip = Request::ip();
+            $user->save();
             return redirect()->back();
+        }
 
         return Js::error(Lang::get('params.10003'));
     }

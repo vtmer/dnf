@@ -25,7 +25,7 @@ class GroupRequest extends FormRequest {
     public function rules()
     {
         return [
-            'name' => "required|max:50|unique:admin_permission,name",
+            'name' => "required|max:50|unique:admin_permission,name,".Request::get('id'),
             'level' => 'integer|between:0,1000',
             'mark' => 'max:100',
         ];
