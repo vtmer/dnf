@@ -57,10 +57,9 @@ class DashboardController extends BaseController {
         if (null == Input::get('password')) {
             $data = array_except(Input::all(), 'password');
         } else {
-            // FIXME: 原密码检查失败
             // 是否与原密码相同
-            $user = UserModel::where('password', Hash::make(Input::get('old_password')))->first();
-            if (!$user) return Js::error(Lang::get('params.10010'));
+            $credentials = ['password' => Input::get('old_password', false)];
+            if (Auth::validate($credentials)) return Js::error(Lang::get('params.10010'));
             $data['password'] = Hash::make($data['password']);
         }
 
