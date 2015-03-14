@@ -2,6 +2,7 @@
 
 @section('body')
 <script>var init = [];</script>
+<script src="/js/backend/demo.js"></script>
 <div id="main-wrapper">
     <div id="main-navbar" class="navbar navbar-inverse" role="navigation">
         <!-- Main menu toggle -->
