@@ -55,6 +55,15 @@
                 </div> <!-- / .tab-pane -->
             </div> <!-- / .tab-content -->
         </div>
+        <div class="col-sm-4">
+            <div class="panel colourable">
+                <div class="panel-body">
+                    <img width="100" id="demo-img" src="">
+                    <input type="hidden" name="url" id="demo-img-url" value="">
+                    <button class="btn btn-primary" type="button" onclick="uploadPic('demo-img');" />上传图片</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div> <!-- / #content-wrapper -->
 
