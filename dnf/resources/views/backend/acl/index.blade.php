@@ -15,7 +15,7 @@
                 <div class="row">
                     <hr class="visible-xs no-grid-gutter-h">
                     <!-- "Create project" button, width=auto on desktops -->
-                    <div class="pull-right col-xs-12 col-sm-auto">{!! App\Widgets\Backend\AclWidget::add(route('backend_system_acl_add'), 'system', 'acl', 'add', Lang::get('backend.add-menu')) !!}</div>
+                    <div class="pull-right col-xs-12 col-sm-auto">{!! AclWidget::add(route('backend_system_acl_add'), 'system', 'acl', 'add', Lang::get('backend.add-menu')) !!}</div>
                     <div class="visible-xs clearfix form-group-margin"></div>
                 </div>
             </div>
@@ -50,8 +50,8 @@
                                     <td class="center">{{{ $data->created_at }}}</td>
                                     <td class="center">{{{ $data->updated_at }}}</td>
                                     <td class="center">
-                                        {!! App\Widgets\Backend\AclWidget::edit(route('backend_system_acl_edit', ['id' => $data->id]), 'system', 'acl', 'edit', null) !!}
-                                        {!! App\Widgets\Backend\AclWidget::delete(route('backend_system_acl_delete', false), 'system', 'acl', 'delete', 'aclList',  $data->id ) !!}
+                                        {!! AclWidget::edit(route('backend_system_acl_edit', ['id' => $data->id]), 'system', 'acl', 'edit', null) !!}
+                                        {!! AclWidget::delete(route('backend_system_acl_delete', false), 'system', 'acl', 'delete', 'aclList',  $data->id ) !!}
                                     </td>
                                 </tr>
                                 @endforeach

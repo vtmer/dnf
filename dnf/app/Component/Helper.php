@@ -4,7 +4,7 @@ use Route;
 
 class Helper
 {
-    public static function routeByAcl($client, $menu)
+    public function routeByAcl($client, $menu)
     {
         $module = $menu->module;
         $class = $menu->class;
@@ -22,7 +22,7 @@ class Helper
      *
      * @return boolean
      */
-    public static function menuTopSite($module, $class = false)
+    public function menuTopSite($module, $class = false)
     {
         $currentUri = Route::current()->getUri();
         $uriArray = explode("/", $currentUri);
@@ -44,7 +44,7 @@ class Helper
      * @param int $time 时间戳
      * @return string
      */
-    public static function mdate($time)
+    public function mdate($time)
     {
         $text = '';
         $time = $time > time() ? time() : $time;

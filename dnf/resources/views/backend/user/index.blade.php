@@ -15,7 +15,7 @@
                 <div class="row">
                     <hr class="visible-xs no-grid-gutter-h">
                     <!-- "Create project" button, width=auto on desktops -->
-                    <div class="pull-right col-xs-12 col-sm-auto">{!! App\Widgets\Backend\AclWidget::add(route('backend_system_user_add'), 'system', 'user', 'add', Lang::get('backend.add-user')) !!}</div>
+                    <div class="pull-right col-xs-12 col-sm-auto">{!! AclWidget::add(route('backend_system_user_add'), 'system', 'user', 'add', Lang::get('backend.add-user')) !!}</div>
                     <div class="visible-xs clearfix form-group-margin"></div>
                 </div>
             </div>
@@ -46,15 +46,15 @@
                                     <td class="center">{{{ $data->realname }}}</td>
                                     <td class="center">{{{ $data->mobile }}}</td>
                                     <td class="center">
-                                        {!! App\Widgets\Backend\AclWidget::change(route('backend_system_user_change-status'), 'system', 'user', 'change-status', Lang::get('backend.button-status.status.'.$data->status), 'status-id-'.$data->id, $data->id) !!}
+                                        {!! AclWidget::change(route('backend_system_user_change-status'), 'system', 'user', 'change-status', Lang::get('backend.button-status.status.'.$data->status), 'status-id-'.$data->id, $data->id) !!}
                                     </td>
                                     <td class="center">{{{ $data->group->name }}}</td>
                                     <td class="center">{{{ $data->created_at }}}</td>
-                                    <td class="center">{{{ App\Component\Helper::mdate($data->last_login_time) }}}</td>
+                                    <td class="center">{{{ Helper::mdate($data->last_login_time) }}}</td>
                                     <td class="center">
-                                        {!! App\Widgets\Backend\AclWidget::edit(route('backend_system_user_edit', ['id' => $data->id]), 'system', 'user', 'edit', null) !!}
-                                        {!! App\Widgets\Backend\AclWidget::button(route('backend_system_user_acl', ['id' => $data->id]), 'system', 'user', 'acl', Lang::get('backend.acl-set')) !!}
-                                        {!! App\Widgets\Backend\AclWidget::delete(route('backend_system_user_delete', false), 'system', 'user', 'delete', 'userList',  $data->id ) !!}
+                                        {!! AclWidget::edit(route('backend_system_user_edit', ['id' => $data->id]), 'system', 'user', 'edit', null) !!}
+                                        {!! AclWidget::button(route('backend_system_user_acl', ['id' => $data->id]), 'system', 'user', 'acl', Lang::get('backend.acl-set')) !!}
+                                        {!! AclWidget::delete(route('backend_system_user_delete', false), 'system', 'user', 'delete', 'userList',  $data->id ) !!}
                                     </td>
                                 </tr>
                                 @endforeach
