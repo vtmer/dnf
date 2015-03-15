@@ -9,6 +9,7 @@
 
 	<!-- Pixel Admin's stylesheets -->
     @section('styles')
+    <script src="{{ asset('packages/ckfinder/ckfinder.js') }}"></script>
 	<link href="{{ elixir('css/backend.css') }}" rel="stylesheet">
     @show
 	<!--[if lt IE 9]>
@@ -19,10 +20,10 @@
 @yield('body')
 
 @section('scripts')
-    <script src="/js/backend/jquery.min.js"></script>
-    <script src="/js/backend/bootstrap.min.js"></script>
-    <script src="/js/backend/pixel-admin.min.js"></script>
-    <script src="/js/backend/common.js"></script>
+    <script src="{{ asset('asset/js/backend/jquery.min.js') }}"></script>
+    <script src="{{ asset('asset/js/backend/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('asset/js/backend/pixel-admin.min.js') }}"></script>
+    <script src="{{ asset('asset/js/backend/common.js') }}"></script>
     @if(Session::has('error'))
         <script>
         bootbox.alert({
