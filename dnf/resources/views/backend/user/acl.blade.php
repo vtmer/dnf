@@ -6,10 +6,6 @@
 
 @section('container')
 <div id="content-wrapper">
-    <ul class="breadcrumb breadcrumb-page">
-        <div class="breadcrumb-label text-light-gray">{{ Lang::get('backend.where') }} :</div>
-        <li class="active"><a href="#">系统管理</a></li>
-    </ul>
     <div class="row">
         <div class="col-sm-12">
             <form id="form_group" action="{{ $formUrl }}" method="post" class="panel form-horizontal">

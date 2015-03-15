@@ -6,6 +6,7 @@ use App\Models\Backend\User as UserModel;
 use Auth;
 use Input;
 use Lang;
+use App\Models\Backend\System\Action as ActionModel;
 use App\Component\Js;
 use Hash;
 
@@ -26,7 +27,10 @@ class DashboardController extends BaseController {
 	 */
 	public function index()
 	{
-		return view('backend.dashboard.index');
+        $actions = ActionModel::orderBy('created_at',SORT_DESC)->simplePaginate(8);
+        return view('backend.dashboard.index', [
+            'actions' => $actions,
+        ]);
 	}
 
     /**

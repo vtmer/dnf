@@ -4,6 +4,7 @@ use App\Models\Backend\System\Acl as AclModel;
 use App\Models\Backend\System\Group as GroupModel;
 use App\Models\Backend\User as UserModel;
 use App\Models\Backend\System\Access as AccessModel;
+use App\Models\Backend\System\Action as ActionModel;
 use App\Component\Js;
 use Request;
 use Input;
@@ -67,6 +68,8 @@ class UserController extends BaseController {
         if (!isset($user->id))
             return Js::error(Lang::get('backend.save-failed'));
 
+        // 写入操作
+        ActionModel::createOneAction('9', $user->name);
         return redirect()->route('backend_system_user_index');
     }
 
@@ -123,6 +126,9 @@ class UserController extends BaseController {
         // 当前用户的group level 必须高于修改的用户的group level
         if (!GroupModel::hasGroupLevelPermission($this->user->group->id, $this->user))
             return Js::response(Lang::get('params.10006'), false);
+
+        // 写入操作
+        ActionModel::createOneAction('10', $user->name, $user->name. " => ".$data['name']);
 
         $user->update($data);
 
@@ -185,6 +191,8 @@ class UserController extends BaseController {
         if (!AccessModel::setPermission($permissions, $id, AccessModel::userType))
             return Js::error(Lang::get('params.10008'));
 
+        // 写入操作
+        ActionModel::createOneAction('13', $user->name);
         return redirect()->route('backend_system_user_index');
     }
 
@@ -215,6 +223,8 @@ class UserController extends BaseController {
         if (!UserModel::deleteById($id))
             return Js::response(Lang::get('params.10005'), false);
 
+        // 写入操作
+        ActionModel::createOneAction('11', $user->name);
         return Js::response(null, true, false);
     }
 
@@ -247,6 +257,9 @@ class UserController extends BaseController {
             return Js::response(Lang::get('params.10008'), false);
 
         $buttonChangeName = Lang::get('backend.button-status.status.'.$user->status);
+
+        // 写入操作
+        ActionModel::createOneAction('12', $user->name);
         return Js::response(null, true, false, $buttonChangeName);
     }
 

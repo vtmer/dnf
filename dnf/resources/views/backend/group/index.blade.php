@@ -7,14 +7,10 @@
 @section('container')
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 <div id="content-wrapper">
-    <ul class="breadcrumb breadcrumb-page">
-        <div class="breadcrumb-label text-light-gray">{{ Lang::get('backend.where') }} :</div>
-        <li class="active"><a href="#">系统管理</a></li>
-    </ul>
     <div class="page-header">
         <div class="row">
             <!-- Page header, center on small screens -->
-            <h1 class="col-xs-12 col-sm-4 text-center text-left-sm"><i class="fa fa-dashboard page-header-icon"></i>&nbsp;&nbsp;Dashboard</h1>
+            <h1 class="col-xs-12 col-sm-4 text-center text-left-sm"><i class="fa fa-dashboard page-header-icon"></i>&nbsp;&nbsp;{{ Lang::get('backend.group-management')}}</h1>
             <div class="col-xs-12 col-sm-8">
                 <div class="row">
                     <hr class="visible-xs no-grid-gutter-h">

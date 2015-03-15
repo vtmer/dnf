@@ -12,6 +12,7 @@ use App\Models\Backend\System\Access as AccessModel;
 use App\Component\Acl;
 use App\Http\Requests\GroupRequest;
 use App\Http\Controllers\Backend\BaseController;
+use App\Models\Backend\System\Action as ActionModel;
 
 class GroupController extends BaseController {
 
@@ -53,6 +54,8 @@ class GroupController extends BaseController {
         if (!isset($group->id))
             return Js::error(Lang::get('backend.save-failed'));
 
+        // 写入操作
+        ActionModel::createOneAction('4', $data['name']);
         return redirect()->route('backend_system_group_index');
     }
 
@@ -94,6 +97,9 @@ class GroupController extends BaseController {
 
         $group = GroupModel::find($data['id']);
         if (!$group) return Js::error(Lang::get('backend.none-data'));
+
+        // 写入操作
+        ActionModel::createOneAction('5', $group->name, $group->name. " => ". $data['name']);
 
         $group->update($data);
 
@@ -150,6 +156,9 @@ class GroupController extends BaseController {
         if (!AccessModel::setPermission($permissions, $id))
             return Js::error(Lang::get('params.10008'));
 
+        // 写入操作
+        $group = GroupModel::find($id);
+        ActionModel::createOneAction('8', $group->name);
         return redirect()->route('backend_system_group_index');
     }
 
@@ -173,8 +182,13 @@ class GroupController extends BaseController {
         if (!GroupModel::hasGroupLevelPermission($id, Auth::user()))
             return Js::response(Lang::get('params.10006'), false);
 
-        if (!GroupModel::deleteById($id, Auth::user()->id))
-            return Js::response(Lang::get('params.10005'), false);
+        $group = GroupModel::find($id);
+        if (!$group) return Js::response(Lang::get('params.10005'), false);
+
+        // 写入操作
+        ActionModel::createOneAction('6', $group->name);
+
+        GroupModel::deleteById($id, Auth::user()->id);
 
         return Js::response(null, true, false);
     }
@@ -208,6 +222,9 @@ class GroupController extends BaseController {
             return Js::response(Lang::get('params.10008'), false);
 
         $buttonChangeName = Lang::get('backend.button-status.status.'.$group->status);
+
+        // 写入操作
+        ActionModel::createOneAction('7', $group->name);
         return Js::response(null, true, false, $buttonChangeName);
     }
 
