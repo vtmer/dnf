@@ -16,9 +16,9 @@ class AclWidget
      * @param string $buttonName
      *
      */
-    public static function change($formUrl, $module, $class, $function, $buttonName, $buttonId, $id)
+    public function change($formUrl, $module, $class, $function, $buttonName, $buttonId, $id)
     {
-        $hasAcl = static::_hasPermission($module, $class, $function);
+        $hasAcl = $this->_hasPermission($module, $class, $function);
 
         $htmlChange = $hasAcl ?
             '<a id="'.$buttonId.'" title="'.Lang::get('backend.change').'"
@@ -39,9 +39,9 @@ class AclWidget
      * @param string $buttonName
      *
      */
-    public static function button($formUrl, $module, $class, $function, $buttonName)
+    public function button($formUrl, $module, $class, $function, $buttonName)
     {
-        $hasAcl = static::_hasPermission($module, $class, $function);
+        $hasAcl = $this->_hasPermission($module, $class, $function);
 
         $htmlChange = $hasAcl ?
             '<a href="'.$formUrl.'" class="btn btn-primary btn-rounded">'
@@ -60,8 +60,8 @@ class AclWidget
      * @param string $function
      * @param string $buttonName
      */
-    public static function add($formUrl, $module, $class, $function,$buttonName) {
-        $hasAcl = static::_hasPermission($module, $class, $function);
+    public function add($formUrl, $module, $class, $function,$buttonName) {
+        $hasAcl = $this->_hasPermission($module, $class, $function);
 
         $htmlAdd = $hasAcl ?
             '<a href="'.$formUrl.'" class="btn btn-primary btn-labeled" style="width:
@@ -81,8 +81,8 @@ class AclWidget
      * @param string function
      * @param array|integer data
      */
-    public static function edit($formUrl, $module, $class, $function, $data) {
-        $hasAcl = static::_hasPermission($module, $class, $function);
+    public function edit($formUrl, $module, $class, $function, $data) {
+        $hasAcl = $this->_hasPermission($module, $class, $function);
 
         $htmlEdit = $hasAcl ?
             '<a title="'.Lang::get('backend.edit').'" href="'.$formUrl.
@@ -100,8 +100,8 @@ class AclWidget
      * @param string function
      * @param array|integer data
      */
-    public static function delete($formUrl, $module = '', $class, $function, $tableList, $data) {
-        $hasAcl = static::_hasPermission($module, $class, $function);
+    public function delete($formUrl, $module = '', $class, $function, $tableList, $data) {
+        $hasAcl = $this->_hasPermission($module, $class, $function);
 
         $htmlDel = $hasAcl ?
             '<a title="'.Lang::get('backend.delete').'"
@@ -117,7 +117,7 @@ class AclWidget
      *
      * @return boolean
      */
-    private static function _hasPermission($module, $class, $function)
+    private function _hasPermission($module, $class, $function)
     {
         return Acl::checkHasPermission($module, $class, $function);
     }
