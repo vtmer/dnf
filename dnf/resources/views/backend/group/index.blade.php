@@ -15,7 +15,7 @@
                 <div class="row">
                     <hr class="visible-xs no-grid-gutter-h">
                     <!-- "Create project" button, width=auto on desktops -->
-                    <div class="pull-right col-xs-12 col-sm-auto">{!! App\Widgets\Backend\AclWidget::add(route('backend_system_group_add'), 'system', 'group', 'add', Lang::get('backend.add-group')) !!}</div>
+                    <div class="pull-right col-xs-12 col-sm-auto">{!! AclWidget::add(route('backend_system_group_add'), 'system', 'group', 'add', Lang::get('backend.add-group')) !!}</div>
                     <div class="visible-xs clearfix form-group-margin"></div>
                 </div>
             </div>
@@ -44,15 +44,15 @@
                                     <td class="center">{{{ $data->name }}}</td>
                                     <td class="center">{{{ $data->mark }}}</td>
                                     <td class="center">
-                                        {!! App\Widgets\Backend\AclWidget::change(route('backend_system_group_change-status'), 'system', 'group', 'change-status', Lang::get('backend.button-status.status.'.$data->status), 'status-id-'.$data->id, $data->id) !!}
+                                        {!! AclWidget::change(route('backend_system_group_change-status'), 'system', 'group', 'change-status', Lang::get('backend.button-status.status.'.$data->status), 'status-id-'.$data->id, $data->id) !!}
                                     </td>
                                     <td class="center">{{{ $data->level }}}</td>
                                     <td class="center">{{{ $data->created_at }}}</td>
                                     <td class="center">{{{ $data->updated_at }}}</td>
                                     <td class="center">
-                                        {!! App\Widgets\Backend\AclWidget::edit(route('backend_system_group_edit', ['id' => $data->id]), 'system', 'group', 'edit', null) !!}
-                                        {!! App\Widgets\Backend\AclWidget::button(route('backend_system_group_acl', ['id' => $data->id]), 'system', 'group', 'acl', Lang::get('backend.acl-set')) !!}
-                                        {!! App\Widgets\Backend\AclWidget::delete(route('backend_system_group_delete', false), 'system', 'group', 'delete', 'groupList',  $data->id ) !!}
+                                        {!! AclWidget::edit(route('backend_system_group_edit', ['id' => $data->id]), 'system', 'group', 'edit', null) !!}
+                                        {!! AclWidget::button(route('backend_system_group_acl', ['id' => $data->id]), 'system', 'group', 'acl', Lang::get('backend.acl-set')) !!}
+                                        {!! AclWidget::delete(route('backend_system_group_delete', false), 'system', 'group', 'delete', 'groupList',  $data->id ) !!}
                                     </td>
                                 </tr>
                                 @endforeach

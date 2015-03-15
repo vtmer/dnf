@@ -39,7 +39,7 @@
                             <div class="comment">
                                 <div class="comment-by">
                                     <a>{{ $action->uname }}</a> {{ Lang::get('backend.action.'.$action->type) }} : <a>{{ $action->title }}</a>
-                                    <span class="pull-right">{{ App\Component\Helper::mdate($action->created_at) }}</span>
+                                    <span class="pull-right">{{ Helper::mdate($action->created_at) }}</span>
                                 </div>
                                 <div class="comment-text">
                                     {{ $action->description }}
