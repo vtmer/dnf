@@ -146,6 +146,7 @@ return [
 		'App\Providers\RouteServiceProvider',
 		'App\Providers\AclWidgetServiceProvider',
 		'App\Providers\HelperServiceProvider',
+		'Vinkla\Pusher\PusherServiceProvider',
 
 	],
 
