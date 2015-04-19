@@ -84,4 +84,14 @@ class User extends BaseModel implements AuthenticatableContract, CanResetPasswor
         return false;
     }
 
+    /**
+     * 获取用户名,ID
+     *
+     * @return array
+     */
+    public static function getUsersNameById($ids)
+    {
+        return static::select('id', 'name')->whereIn('id', $ids)->get();
+    }
+
 }
