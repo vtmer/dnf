@@ -13,25 +13,17 @@ use Hash;
 class DashboardController extends BaseController {
 
     /**
-     * 登陆验证
-     */
-    public function __construct()
-    {
-        $this->middleware('admin.auth');
-    }
-
-	/**
      * 页面：后台首页
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
+     *
+     * @return Response
+     */
+    public function index()
+    {
         $actions = ActionModel::orderBy('created_at',SORT_DESC)->simplePaginate(8);
         return view('backend.dashboard.index', [
             'actions' => $actions,
         ]);
-	}
+    }
 
     /**
      * 页面：修改个人信息
