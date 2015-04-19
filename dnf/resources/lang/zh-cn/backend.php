@@ -19,6 +19,7 @@ return [
     'edit-user'=> '编辑用户',
     'edit-self'=> '编辑个人信息',
     'account' => '帐号',
+    'cancel' => '取消',
     'save' => '保存',
     'character-left' => '字符剩余长度',
     'sort' => '排序',
@@ -34,6 +35,15 @@ return [
     'acl-set' => '权限设置',
     'return' => "返回",
     'all-select' => "全选",
+    'envelope' => "站内信",
+    'unread' => '未读',
+    'read' => '已读',
+    'send'=> '发送',
+    'sended' => '已发送',
+    'send-envelope' => '发送站内信',
+    'subject' => '标题',
+    'send-to' => '发送至',
+    'more-message' => '更多消息',
 
     # status button
     'button-status' => [
@@ -69,6 +79,7 @@ return [
     'title' => [
         'index' => 'Vtmer官网后台',
         'login' => 'Vtmer官网后台-登陆',
+        'inbox' => '站内信',
         'acl' => [
             'index' => '菜单管理',
             'add' => '添加菜单',
@@ -79,6 +90,7 @@ return [
     'messages' => [
         'about-module' => '如果涉及模块名，那么请填写，否则可以不填写',
         'select-parent' => '请选择父级功能',
+        'select-user' => '请选择用户',
         'select-group' => '请选择用户组',
         'cant-change' => '不可更改',
         'confirm' => '确定此操作吗?',
@@ -91,6 +103,7 @@ return [
             'name' => '名称长度最长为：',
             'module' => '模块名长度最长为：',
             'mark' => '备注名长度最长为：',
+            'content' => '内容长度最长为:',
         ],
         'required' => [
             'name' => '名称不为空',
@@ -99,6 +112,9 @@ return [
             'function' => '函数名不为空',
             'realname' => "真实名称",
             'group-id' => '用户组ID不为空',
+            'content' => '内容不为空',
+            'receiver-id' => '接收人ID不为空',
+            'receiver-name' => '接收人姓名不为空',
         ],
         'unique' => [
             'name' => '名称必须唯一',
@@ -108,6 +124,7 @@ return [
             'level' => '等级数据类型错误',
             'mobile' => '电话',
             'group-id' => '用户组ID数据类型错误',
+            'receiver-id' => '接收人ID数据类型错误',
         ],
         'between' => [
             'name' => '名称长度范围为',
@@ -135,5 +152,12 @@ return [
         '11' => '删除了用户',
         '12' => '更改了用户状态',
         '13' => '更改了用户权限',
-    ]
+    ],
+
+    # pusher channel
+    'pusher' => [
+        'channel' => [
+            'mail' => 'mail',
+        ],
+    ],
 ];
