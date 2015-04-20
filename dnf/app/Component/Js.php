@@ -4,7 +4,12 @@ class Js
 {
     public static function error($message)
     {
-        return redirect()->back()->with(['error' => $message]);
+        return redirect()->back()->with(['msg' => $message]);
+    }
+
+    public static function success($message)
+    {
+        return redirect()->back()->with(['msg' => $message]);
     }
 
     /**

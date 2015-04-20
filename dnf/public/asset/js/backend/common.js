@@ -15,8 +15,6 @@ function ajaxDelete(url, tableId, id)
             if (result) {
                 var csrf = $('input[name="_token"]').val();
                 $.post(url, {id: id, _token: csrf }, function (data) {
-                    console.log(id);
-                    console.log(csrf);
                     data = $.parseJSON(data);
                     if (data.status == 'success') {
                         var table = $('#' + tableId).DataTable();
@@ -53,8 +51,6 @@ function ajaxChange(url, buttonId, id)
             if (result) {
                 var csrf = $('input[name="_token"]').val();
                 $.post(url, {id: id, _token: csrf }, function (data) {
-                    console.log(id);
-                    console.log(csrf);
                     data = $.parseJSON(data);
                     if (data.status == 'success') {
                         $('#' + buttonId).text(data.data);
@@ -120,4 +116,94 @@ function SetFileField(scope, url)
 {
     $('#'+scope).attr("src", url);
     $('#'+scope+"-url").value = url;
+}
+
+
+init.push(function () {
+    $('#main-navbar-messages').slimScroll({ height: 251 });
+    // 站内信表单验证
+    $('#receiver').select2({ allowClear: true, }).change(function () { $(this).valid(); });
+    $('#mail').validate({
+        ignore: '.ignore, .select2-input',
+        focusInvalid: true,
+        errorPlacement: function (){},
+        rules: {
+            'receiver_id[]': {
+                required: true
+            },
+            'content': {
+                required: true
+            },
+        },
+        submitHandler: function (form, event) {
+            event.preventDefault();
+            crsf = $('input[name="_token"]').val();
+            url = $('#mail').data('action');
+            $.post(url, {
+                receiver_id: $('#receiver').select2().val(),
+                content: $('#content').val(),
+                _token: crsf }, function (data) {
+                    data = $.parseJSON(data);
+                    if (data.status == 'error') {
+                        bootbox.alert({
+                            message: data.message,
+                            className: "bootbox-sm"
+                        });
+                    }
+                }
+            );
+            $('#envelope').modal('hide');
+            $('#receiver').select2('val', '');
+            $('#content').val("");
+        }
+    });
+    $("#content").limiter(1000, { label: '#content-limit-label' });
+});
+
+
+(function (){
+    var pusher = new Pusher('c61af4d9cbe4b04e6245');
+    pusher.connection.bind('state_change', function (change) {
+    });
+
+    chbind = function (channel, event, callback) {
+        var channel = pusher.subscribe(channel);
+
+        channel.bind(event, function (data) {
+            callback(data);
+        });
+    }
+
+})();
+
+function pushMsg(data) {
+    if (!Date.now) {
+        Date.now = function () { return new Date().getTime(); }
+    }
+    msg = $('<div class="message"></div>').attr('data-id', data.id);
+    msg.append($('<a class="message-subject"></a>').text(data.msg));
+    msgDesc = $('<div class="message-description"></div>').append($('<a></a>').text(data.sender_name));
+    msgDesc.append($('<span class="time"></span>').attr('data-created', Date.now).text(' -- 刚刚'));
+    $('#main-navbar-messages').prepend(msg.append(msgDesc));
+
+   $('.unread').each(function (){
+       $unread = $(this);
+       if (parseInt($unread.html()) != 0) $unread.html(parseInt($unread.html()) + 1);
+       else $unread.html(1);
+   });
+
+   if($('body').has('.mail-unread')) {
+       item = $('<li class="mail-item"></li>');
+       checkout = $('<div class="m-chck"></div>');
+       label = $('<label class="px-single"></label>');
+       label.append($('<input type="checkbox" class="px flag">').attr('data-id', data.id));
+       label.append($('<span class="lbl"></span>'));
+       item.append(checkout.append(label));
+       item.append($('<div class="m-from"><p></p></div>').text(data.sender_name));
+       item.append($('<div class="m-subject"><p></p></div>').text(data.msg));
+       item.append($('<div class="m-date"></div>').attr('data-created', Date.now).text('刚刚'));
+       $('.mail-unread').prepend(item);
+   }
+
+    $.growl({ title: "新的站内信", message: "来自" + data.sender_name , duration: 9999*9999 });
 }

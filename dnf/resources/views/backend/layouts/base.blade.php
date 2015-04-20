@@ -23,11 +23,10 @@
     <script src="{{ asset('asset/js/backend/jquery.min.js') }}"></script>
     <script src="{{ asset('asset/js/backend/bootstrap.min.js') }}"></script>
     <script src="{{ asset('asset/js/backend/pixel-admin.min.js') }}"></script>
-    <script src="{{ asset('asset/js/backend/common.js') }}"></script>
-    @if(Session::has('error'))
+    @if(Session::has('msg'))
         <script>
         bootbox.alert({
-            message: "<?php echo Session::get('error'); ?>",
+            message: "<?php echo Session::get('msg'); ?>",
             className: "bootbox-sm"
         });
         </script>
