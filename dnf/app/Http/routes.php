@@ -350,16 +350,11 @@ Route::group(['prefix' => 'backend'], function() {
             ));
 
             # 文章彻底删除
-            Route::get('/delete', array(
+            Route::post('/delete', array(
             'as' => 'backend_blog_articles_delete',
             'uses' => 'Backend\Blog\ArticleController@deleteTrashedArticle'
             ));
 
-            # 清空回收站
-            Route::get('/empty-trash/{id}', array(
-                'as' => 'backend_blog_articles_trashedEmpty',
-                'uses' => 'Backend\Blog\ArticleController@deleteTrashedArticle'
-                ));
 
             # 文章软删除
             Route::post('/softdelete',array(
@@ -369,16 +364,16 @@ Route::group(['prefix' => 'backend'], function() {
 
 
 
-                 # 文章恢复
-                 Route::get('/restore/{id}', array(
+             # 文章恢复
+             Route::post('/restore', array(
                 'as' => 'backend_blog_articles_restore',
                 'uses' => 'Backend\Blog\ArticleController@restoreTrashedArticle'
-                     ));
-                 # 改变文章排序
-                Route::post('/sort', array(
+            ));
+             # 改变文章排序
+            Route::post('/sort', array(
                 'as' => 'backend_blog_articles_sort',
                 'uses' => 'Backend\Blog\ArticleController@articleSort'
-                ));
+            ));
 
         });
        });

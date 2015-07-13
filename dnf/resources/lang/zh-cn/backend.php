@@ -34,6 +34,7 @@ return [
     'update-time' => '更新日期',
     'create-time' => '创建日期',
     'operate' => '操作',
+     'Forcibly remove' => '强制删除',
     'save-failed' => '保存失败',
     'none-data' => '数据不存在',
     'edit' => '编辑',

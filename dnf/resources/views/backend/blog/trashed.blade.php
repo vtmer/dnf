@@ -39,6 +39,7 @@
                                     <th>{{ Lang::get('backend.form.blog.deleter') }}</th>
                                     <th>{{ Lang::get('backend.update-time') }}</th>
                                     <th>{{ Lang::get('backend.operate') }}</th>
+                                    <th>{{ Lang::get('backend.Forcibly remove') }}</th>
 
                                 </tr>
                             </thead>
@@ -67,7 +68,18 @@
                                     <td class="updater">{{{ $data->updater}}}</td>
                                     <td class="center" >{{{ $data->updated_at}}}</td>
                                      <td class= "center">
-
+                                             <form id="form_article"  action="{{ route('backend_blog_articles_restore') }}"  method="POST"  >
+                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                     <input type="hidden" name="id" value="{{ $data->id or '' }}">
+                                                     <button type="submit" class="btn btn-primary" > 恢复</button>
+                                             </form>
+                                         </td>      
+                                          <td class= "center">
+                                             <form id="form_article"  action="{{ route('backend_blog_articles_delete') }}"  method="POST"  >
+                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                     <input type="hidden" name="id" value="{{ $data->id or '' }}">
+                                                     <button type="submit" class="btn btn-rounded btn-primary fa-trash-o" > </button>
+                                             </form>
                                     </td>
                                   
                                 </tr>

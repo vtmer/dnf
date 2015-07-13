@@ -172,18 +172,26 @@ class ArticleController extends BaseController{
      * 动作： 恢复文章
      * @return Response
      */
-    public function restoreTarshedArticle()
+    public function restoreTrashedArticle()
     {
-
+        $id = Input::get('id',false);
+        $article = ArticleModel::withTrashed()->find($id);
+        if(!$article)return Js::response(Lang::get('params.10005',false));
+        $article->restore();
+        return redirect()->route('backend_blog_articles_index');
     }
 
           /**
      * 动作：彻底删除文章
      * @return Resonpse
      */
-    public function deleteTrashedArticle($id)
+    public function deleteTrashedArticle()
     {
-
+        $id = Input::get('id',false);
+        $article = ArticleModel::withTrashed()->find($id);
+        if(!$article)return Js::response(Lang::get('params.10005',false));
+        $article->forceDelete();
+        return redirect()->route('backend_blog_articles_trashed');
     }
 
 
