@@ -89,7 +89,7 @@ class ArticleController extends BaseController{
      */
     public function createArticle(ArticleRequest $request)
     {
-    	$data  = array_except(Input::all(),'_taken');
+    	$data  = Input::all();
     	$article = ArticleModel::createOneArticle($data);
         $article_id = $article->id;
         $tag_ids = $data['tag_id'];
@@ -161,6 +161,7 @@ class ArticleController extends BaseController{
         $article->update([
             'updater' => $user->realname,
             'draft' => 1,
+            'category_id'=>1,
         ]);
         $article->delete();
 
@@ -178,7 +179,10 @@ class ArticleController extends BaseController{
         $article = ArticleModel::withTrashed()->find($id);
         if(!$article)return Js::response(Lang::get('params.10005',false));
         $article->restore();
+        //写入操作
+        ActionModel::createOneAction('24',$article->title);
         return redirect()->route('backend_blog_articles_index');
+
     }
 
           /**
@@ -191,19 +195,12 @@ class ArticleController extends BaseController{
         $article = ArticleModel::withTrashed()->find($id);
         if(!$article)return Js::response(Lang::get('params.10005',false));
         $article->forceDelete();
+        //写入操作
+        ActionModel::createOneAction('25',$article->title);
         return redirect()->route('backend_blog_articles_trashed');
     }
 
 
-    /**
-     *动作 ： 清空回收站，删除所有被软删除的文章
-     * @return Response
-     */
-
-    public function deleteAllArticle()
-    {
-
-    }
 
     /**
      * 动作：改变文章排序
@@ -215,23 +212,6 @@ class ArticleController extends BaseController{
     }
 
 
-    /**
-     * 方法： 硬删除文章以及相关关系
-     * @return boolean
-     */
-    public function deleteArticle($trashedArticle)
-    {
-
-    }
-
-    /**
-     * 方法：保存文章分类关系
-     * @return void
-     */
-     public function saveArtileCategory($categories,$articleId)
-     {
-
-     }
 
 
 

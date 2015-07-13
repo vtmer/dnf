@@ -72,6 +72,8 @@ class CategoryController extends BaseController {
      public function deleteCategory()
      {
         $id = Input::get('id',false);
+        if($id==1)return Js::error(Lang::get('params.10007'));
+
         $category = CategoryModel::find($id);
         if(!$category)return Js::response(Lang::get('params.10005',false));
         $article_ids = [];
