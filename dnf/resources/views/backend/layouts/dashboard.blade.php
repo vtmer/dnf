@@ -71,20 +71,20 @@
         </div> <!-- / .navbar-inner -->
     </div> <!-- / #main-navbar -->
 
-	<div id="main-menu" role="navigation">
-		<div id="main-menu-inner">
-			<ul class="navigation">
-				<li>
+    <div id="main-menu" role="navigation">
+        <div id="main-menu-inner">
+            <ul class="navigation">
+                <li>
                     <a href="{{ route('backend_dashboard_index') }}"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">{{ Lang::get('backend.dashboard') }}</span></a>
-				</li>
+                </li>
                 {!! App\Widgets\Backend\MenuWidget::menu() !!}
-			</ul> <!-- / .navigation -->
-		</div> <!-- / #main-menu-inner -->
-	</div> <!-- / #main-menu -->
+            </ul> <!-- / .navigation -->
+        </div> <!-- / #main-menu-inner -->
+    </div> <!-- / #main-menu -->
 
     @yield('container')
 
-	<div id="main-menu-bg"></div>
+    <div id="main-menu-bg"></div>
 </div> <!-- / #main-wrapper -->
 
 @include('backend.widgets.modal')
@@ -100,4 +100,3 @@
         chbind("<?php echo Lang::get('backend.pusher.channel.mail'); ?>", <?php echo Auth::user()->id; ?>, pushMsg);
     </script>
 @stop
-
