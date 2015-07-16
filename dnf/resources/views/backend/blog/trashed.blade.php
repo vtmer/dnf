@@ -1,7 +1,7 @@
 @extends('backend.layouts.dashboard')
 
 @section('title')
-{{ Lang::get('backend.title.blog.article') }}
+{{ Lang::get('backend.title.blog.trashed') }}
 @stop
 
 @section('container')
