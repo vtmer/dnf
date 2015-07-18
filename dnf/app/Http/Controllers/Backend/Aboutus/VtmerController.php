@@ -130,7 +130,7 @@ class VtmerController extends BaseController {
         $vtmer->delete();
 
         ActionModel::createOneAction('42',$vtmer->name);
-        return Js::Response(null,true,false);
+        return redirect()->route('backend_aboutus_vtmer_index');
     }
 
     /**
