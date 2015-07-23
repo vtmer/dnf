@@ -43,7 +43,7 @@
                              {{{ $data->introduction}}}
                         </div>
                         <hr>
-                        <div  class="col-md-6">
+                        <div  class="col-md-7">
                                 {!! AclWidget::edit(route('backend_aboutus_vtmer_update', ['id' => $data->id]), 'aboutus', 'vtmer', 'update', null) !!}
                                          &nbsp;&nbsp;
                           </div>  

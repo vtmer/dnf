@@ -42,11 +42,8 @@
                              {{{ $data->introduction}}}
                         </div>
                         <hr>
-                        <div  class="col-md-4">
-                                {!! AclWidget::edit(route('backend_aboutus_vtmer_update', ['id' => $data->id]), 'aboutus', 'vtmer', 'update', null) !!}
-                                         &nbsp;&nbsp;
-                          </div>  
-                          <div class="col-md-4" >             
+
+                          <div class="col-md-7" >             
                                              <form id="form_vtmer"  action="{{ route('backend_aboutus_vtmer_restore') }}"  method="POST"  >
                                                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                      <input type="hidden" name="id" value="{{ $data->id or '' }}">
