@@ -24,7 +24,7 @@ class Article extends BaseModel {
       /*
        *批量赋值
        */
-      protected $fillable =['title','category_id','updater','author','source','description','content','draft','top','scroll','created_at','updated_at','deleted_at',
+      protected $fillable =['title','category_id','updater','author','source','description','content','draft','img_URL','scroll','created_at','updated_at','deleted_at',
 
 	];
 
@@ -43,7 +43,7 @@ class Article extends BaseModel {
               'source'=> $data['source'],
               'content'=>$data['content'],
               'draft' => $data['draft'],
-              //'top' => $data['top'],
+              'img_URL' => $data['img_URL'],
               'create_at'=> time(),
               'update_at'=> time(),
           ]);

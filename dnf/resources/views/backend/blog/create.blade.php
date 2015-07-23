@@ -6,6 +6,10 @@
 
 @section('container')
 <div id="content-wrapper">
+
+  <style type="text/css">
+  .btn{display: block;margin-top: 10px;}
+</style>
     <div class="row">
         <div class="col-sm-12">
 
@@ -18,6 +22,19 @@
 
                 </div>
 
+                 <div class="form-group">
+                          <label for="title" class="col-sm-1 control-label">图片：</label>
+                          <div class="col-sm-10">
+                              <div class="has-feedback">
+                                  <img width="300" id="demo-img" src="{{{$data->img_URL or ''}}}">
+                                   <input type="hidden" name="img_URL" id="img_URL" value="{{{$data->img_URL or ''}}}" >
+                                   <br>
+                                  <button class="btn btn-primary" type="button" onclick="uploadPic('demo-img');" />上传图片</button>
+                              </div>
+                         </div>
+               </div> <!-- / .form-group -->
+               
+
                <div class="panel-body">
                     <div class="form-group">
                         <label for="title" class="col-sm-1 control-label">{{ Lang::get('backend.form.blog.title')}}：</label>
@@ -28,6 +45,8 @@
                             </div>
                         </div>
                       </div> <!-- / .form-group -->
+
+
 
                   
                      <div class="form-group">
