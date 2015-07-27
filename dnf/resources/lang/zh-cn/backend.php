@@ -11,6 +11,7 @@ return [
     'category-management'=>'栏目管理',
     'article-management'=>'文章管理',
     'tag-management'=>'标签管理',
+    'product-management'=>'产品案例管理',
     'trashed'=>'回收站',
     'newest-action' => '最新动态',
     'where' => '所在位置',
@@ -20,7 +21,9 @@ return [
     'add-menu'=> '增加功能菜单',
     'add-group'=> '增加用户组',
     'add-user'=> '增加用户',
+    'add-product'=>'增加产品案例',
     'create'=>'添加文章',
+    'edit-product'=>'编辑产品案例',
     'edit-user'=> '编辑用户',
     'edit-self'=> '编辑个人信息',
     'account' => '帐号',
@@ -87,6 +90,7 @@ return [
         'password' => '密码',
         'old-password' => '原密码',
         'password-confirmation' => '重复密码',
+
         'blog' =>[
 	    'title'=>'标题',
 	    'author' =>'作者',
@@ -108,6 +112,12 @@ return [
                     'deleter'=>'删除者',
                    'tags'=>'标签',
 	],
+     'product'=>[
+            'name'=>'名称',
+            'holder'=>'持有人',
+            'url' =>'链接',
+            'description'=>'简介',
+        ],
     ],
 
     # website page title
@@ -128,6 +138,12 @@ return [
             'article'=>'文章管理',
             'tag' => '标签管理',
         ],
+        'product'=>[
+            'index' =>'产品案例管理',
+            'create'=>'添加产品案例',
+             'update'=>'更新产品案例',
+        ],
+
     ],
 
     # messages
@@ -171,11 +187,13 @@ return [
             'content' => '栏目不能为空',
              'creator' => '创建人不能为空',
              'updater'=>'更新者不能为空',
-             'description'=>'文章简介不能为空',
+             'description'=>'简介不能为空',
              'content' =>'文章内容不能为空',
              'source' =>'文章来源不能为空',
              'category_id'=>'文章栏目不能为空',
              'tag_id'=>'文章标签不能为空',
+             'holder'=>'持有人不能为空',
+             'url'=>'链接不能为空',
         ],
         'unique' => [
             'name' => '名称必须唯一',
@@ -203,6 +221,7 @@ return [
              'updater'=>'更新者长度范围为:',
               'author'=>'作者长度范围为:',
               'tag'=>'标签长度范围为:',
+              'holder'=>'持有人长度范围为:',
         ],
         'confirmed' => [
             'password' => '密码前后不一致',
@@ -237,6 +256,9 @@ return [
         '24' => '恢复了文章',
         '25' =>'强制删除了文章',
         '26' =>'由于栏目被删除，软删除该栏目下的文章',
+        '50' => '添加了产品案例',
+        '51'=>'删除了产品案例',
+        '52'=>'编辑了产品案例',
 
     ],
 
