@@ -24,6 +24,12 @@
                                 <i class="fa fa-asterisk form-control-feedback"></i>
                             </div>
                         </div>
+                                <div class="required field">
+                <div class="ui labeled input">
+                    <a class="ui label" style="width: 10%;text-align:right">标签</a>
+                    <input type="text" name="tag" id="tag" value="@if(isset($post->tags)) {{ $post->tags }} @endif" placeholder="多标签用#隔开">
+                </div>
+            </div>
                     </div> <!-- / .form-group -->
                     <div class="form-group">
                         <label for="realname" class="col-sm-2 control-label">{{ Lang::get('backend.form.realname')}}</label>

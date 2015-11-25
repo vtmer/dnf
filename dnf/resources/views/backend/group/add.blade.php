@@ -41,7 +41,7 @@
                             <div id="mark-limit-label" class="limiter-label">{{ Lang::get('backend.character-left') }} : <span class="limiter-count"></span></div>
                         </div>
                     </div> <!-- / .form-group -->
-                                            <div class="form-group" style="margin-bottom: 0;">
+                         <div class="form-group" style="margin-bottom: 0;">
                         <div class="col-sm-offset-2 col-sm-10">
                             <button type="submit" class="btn btn-primary">{{ Lang::get('backend.save') }}</button>
                         </div>

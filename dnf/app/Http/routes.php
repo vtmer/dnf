@@ -250,7 +250,192 @@ Route::group(['prefix' => 'backend'], function() {
 
                 });
             });
-        });
-    });
+    Route::group(['prefix' => 'blog'], function() {
+          #栏目管理
+       Route::group(array('prefix' => 'category'),function () {
+           #栏目列表
+           route::get('/',array(
+                   'as'=> 'backend_blog_category_index',
+ 		   'uses'=>'Backend\Blog\CategoryController@showCategory'
+           ));
+           #新建栏目
+           Route::post('/create',array(
+            'as' => 'backend_blog_category_create',
+            'uses' =>'Backend\Blog\CategoryController@createCategory'
+           ));
 
-});
+           #修改栏目
+           Route::post('/update',array(
+            'as' => 'backend_blog_category_update',
+            'uses'=>'Backend\Blog\CategoryController@updateCategory'
+           ));
+
+           #删除栏目
+           Route::post('/delete',array(
+            'as' => 'backend_blog_category_delete',
+            'uses' => 'Backend\Blog\CategoryController@deleteCategory'
+           ));
+        });
+
+       #标签管理
+       Route::group(array('prefix' => 'tag'),function () {
+           #标签列表
+           route::get('/',array(
+                   'as'=> 'backend_blog_tag_index',
+ 		   'uses'=>'Backend\Blog\TagController@showTag'
+           ));
+           #新建标签
+           Route::post('/create',array(
+            'as' => 'backend_blog_tag_create',
+            'uses' =>'Backend\Blog\TagController@createTag'
+           ));
+
+           #修改标签
+           Route::post('/update',array(
+            'as' => 'backend_blog_tag_update',
+            'uses'=>'Backend\Blog\TagController@updateTag'
+           ));
+
+           #删除标签
+           Route::post('/delete',array(
+            'as' => 'backend_blog_tag_delete',
+            'uses' => 'Backend\Blog\TagController@deleteTag'
+           ));
+        });
+
+
+        #文章管理
+        Route::group(array('prefix'=>'articles'), function () {
+
+           #文章列表页面
+           Route::get('/',array(
+            'as' => 'backend_blog_articles_index',
+            'uses'=>'Backend\Blog\ArticleController@getArticles'
+           ));
+           #文章添加页面
+           Route::get('/create',array(
+            'as'=> 'backend_blog_articles_create',
+            'uses'=>'Backend\Blog\ArticleController@_create'
+           ));
+           # 回收站页面
+           Route::get('/trashed',array(
+            'as' => 'backend_blog_articles_trashed',
+            'uses' => 'Backend\Blog\ArticleController@getTrashedArticles'
+           ));
+
+           # 文章发表
+           Route::post('/create',array(
+            'as' => 'backend_blog_articles_create',
+            'uses' => 'Backend\Blog\ArticleController@createArticle'
+           ));
+
+
+          # 文章编辑页面
+           Route::get('/update', array(
+           'as' => 'backend_blog_articles_update',
+           'uses' => 'Backend\Blog\ArticleController@update'
+         ));
+
+
+            # 文章修改
+            Route::post('/update', array(
+            'as' => 'backend_blog_articles_update',
+            'uses' => 'Backend\Blog\ArticleController@_update'
+            ));
+
+            # 改变文章的发布状态
+            Route::post('/change-status', array(
+            'as' => 'backend_blog_articles_change-status',
+            'uses' => 'Backend\Blog\ArticleController@_changeStatus'
+            ));
+
+            # 文章彻底删除
+            Route::post('/delete', array(
+            'as' => 'backend_blog_articles_delete',
+            'uses' => 'Backend\Blog\ArticleController@deleteTrashedArticle'
+            ));
+
+
+            # 文章软删除
+            Route::post('/softdelete',array(
+            'as' => 'backend_blog_articles_softdelete',
+            'uses' =>'Backend\Blog\ArticleController@softdeleteArticle'
+            ));
+
+
+
+             # 文章恢复
+             Route::post('/restore', array(
+                'as' => 'backend_blog_articles_restore',
+                'uses' => 'Backend\Blog\ArticleController@restoreTrashedArticle'
+            ));
+             # 改变文章排序
+            Route::post('/sort', array(
+                'as' => 'backend_blog_articles_sort',
+                'uses' => 'Backend\Blog\ArticleController@articleSort'
+            ));
+
+        });
+       });
+
+Route::group(['prefix' => 'aboutus'], function() {
+          #关于我们管理
+       Route::group(array('prefix' => 'vtmer'),function () {
+           #Vtmer列表
+           route::get('/',array(
+               'as'=> 'backend_aboutus_vtmer_index',
+               'uses'=>'Backend\Aboutus\VtmerController@showVtmer'
+           ));
+
+           #Vtmer添加页面
+           Route::get('/create',array(
+            'as'=> 'backend_aboutus_vtmer_create',
+            'uses'=>'Backend\Aboutus\VtmerController@_create'
+           ));
+
+            #文章编辑页面
+           Route::get('/update',array(
+            'as'=>'backend_aboutus_vtmer_update',
+            'uses'=>'Backend\Aboutus\VtmerController@update'
+            ));
+           # 回收站页面
+           Route::get('/trashed',array(
+            'as' => 'backend_aboutus_vtmer_trashed',
+            'uses' => 'Backend\Aboutus\VtmerController@getTrashedVtmer'
+           ));
+
+           #添加Vtmer
+           Route::post('/create',array(
+            'as' => 'backend_aboutus_vtmer_create',
+            'uses' =>'Backend\Aboutus\VtmerController@createVtmer'
+           ));
+
+           #修改Vtmer信息
+           Route::post('/update',array(
+            'as' => 'backend_aboutus_vtmer_update',
+            'uses'=>'Backend\Aboutus\VtmerController@_update'
+           ));
+
+           #软删除Vtmer个人信息
+           Route::post('/softdelete',array(
+            'as' => 'backend_aboutus_vtmer_softdelete',
+            'uses' => 'Backend\Aboutus\VtmerController@softdeleteVtmer'
+           ));
+
+           #恢复Vtmer个人信息
+           Route::post('/restore',array(
+            'as'=>'backend_aboutus_vtmer_restore',
+            'uses'=>'Backend\Aboutus\VtmerController@restoreTrashedVtmer'
+            ));
+
+           #删除Vtmer个人信息
+           Route::post('/delete',array(
+            'as'=> 'backend_aboutus_vtmer_delete',
+            'uses'=>'Backend\Aboutus\VtmerController@deleteTrashedVtmer'
+            ));
+        });
+   });
+
+    });
+   });
+ });
