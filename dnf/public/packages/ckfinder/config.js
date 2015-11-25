@@ -14,4 +14,5 @@ CKFinder.customConfig = function( config )
 	// config.language = 'fr';
 	// config.removePlugins = 'basket';
 
+
 };
