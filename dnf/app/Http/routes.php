@@ -250,7 +250,243 @@ Route::group(['prefix' => 'backend'], function() {
 
                 });
             });
-        });
-    });
+    Route::group(['prefix' => 'blog'], function() {
+          #栏目管理
+       Route::group(array('prefix' => 'category'),function () {
+           #栏目列表
+           route::get('/',array(
+                   'as'=> 'backend_blog_category_index',
+ 		   'uses'=>'Backend\Blog\CategoryController@showCategory'
+           ));
+           #新建栏目
+           Route::post('/create',array(
+            'as' => 'backend_blog_category_create',
+            'uses' =>'Backend\Blog\CategoryController@createCategory'
+           ));
 
-});
+           #修改栏目
+           Route::post('/update',array(
+            'as' => 'backend_blog_category_update',
+            'uses'=>'Backend\Blog\CategoryController@updateCategory'
+           ));
+
+           #删除栏目
+           Route::post('/delete',array(
+            'as' => 'backend_blog_category_delete',
+            'uses' => 'Backend\Blog\CategoryController@deleteCategory'
+           ));
+        });
+
+       #标签管理
+       Route::group(array('prefix' => 'tag'),function () {
+           #标签列表
+           route::get('/',array(
+                   'as'=> 'backend_blog_tag_index',
+ 		   'uses'=>'Backend\Blog\TagController@showTag'
+           ));
+           #新建标签
+           Route::post('/create',array(
+            'as' => 'backend_blog_tag_create',
+            'uses' =>'Backend\Blog\TagController@createTag'
+           ));
+
+           #修改标签
+           Route::post('/update',array(
+            'as' => 'backend_blog_tag_update',
+            'uses'=>'Backend\Blog\TagController@updateTag'
+           ));
+
+           #删除标签
+           Route::post('/delete',array(
+            'as' => 'backend_blog_tag_delete',
+            'uses' => 'Backend\Blog\TagController@deleteTag'
+           ));
+        });
+
+
+        #文章管理
+        Route::group(array('prefix'=>'articles'), function () {
+
+           #文章列表页面
+           Route::get('/',array(
+            'as' => 'backend_blog_articles_index',
+            'uses'=>'Backend\Blog\ArticleController@getArticles'
+           ));
+           #文章添加页面
+           Route::get('/create',array(
+            'as'=> 'backend_blog_articles_create',
+            'uses'=>'Backend\Blog\ArticleController@_create'
+           ));
+           # 回收站页面
+           Route::get('/trashed',array(
+            'as' => 'backend_blog_articles_trashed',
+            'uses' => 'Backend\Blog\ArticleController@getTrashedArticles'
+           ));
+
+           # 文章发表
+           Route::post('/create',array(
+            'as' => 'backend_blog_articles_create',
+            'uses' => 'Backend\Blog\ArticleController@createArticle'
+           ));
+
+
+          # 文章编辑页面
+           Route::get('/update', array(
+           'as' => 'backend_blog_articles_update',
+           'uses' => 'Backend\Blog\ArticleController@update'
+         ));
+
+
+            # 文章修改
+            Route::post('/update', array(
+            'as' => 'backend_blog_articles_update',
+            'uses' => 'Backend\Blog\ArticleController@_update'
+            ));
+
+            # 改变文章的发布状态
+            Route::post('/change-status', array(
+            'as' => 'backend_blog_articles_change-status',
+            'uses' => 'Backend\Blog\ArticleController@_changeStatus'
+            ));
+
+            # 文章彻底删除
+            Route::post('/delete', array(
+            'as' => 'backend_blog_articles_delete',
+            'uses' => 'Backend\Blog\ArticleController@deleteTrashedArticle'
+            ));
+
+
+            # 文章软删除
+            Route::post('/softdelete',array(
+            'as' => 'backend_blog_articles_softdelete',
+            'uses' =>'Backend\Blog\ArticleController@softdeleteArticle'
+            ));
+
+
+
+             # 文章恢复
+             Route::post('/restore', array(
+                'as' => 'backend_blog_articles_restore',
+                'uses' => 'Backend\Blog\ArticleController@restoreTrashedArticle'
+            ));
+             # 改变文章排序
+            Route::post('/sort', array(
+                'as' => 'backend_blog_articles_sort',
+                'uses' => 'Backend\Blog\ArticleController@articleSort'
+            ));
+
+        });
+       });
+
+
+     Route::group(['prefix' => 'course'], function() {
+          #教程管理
+       Route::group(array('prefix' => 'course'),function () {
+           #教程列表
+           route::get('/',array(
+                   'as'=> 'backend_course_course_index',
+                   'uses'=>'Backend\Course\CourseController@showCourse'
+           ));
+           #新建教程
+           Route::post('/create',array(
+            'as' => 'backend_course_course_create',
+            'uses' =>'Backend\Course\CourseController@createCourse'
+           ));
+
+            #在文章编辑页面直接创建教程名
+            Route::post('/createInIndex',array(
+            'as'=>'backend_course_course_createInIndex',
+            'uses'=>'Backend\Course\CourseController@createCourseInIndex'
+));
+
+           #修改教程
+           Route::post('/update',array(
+            'as' => 'backend_course_course_update',
+            'uses'=>'Backend\Course\CourseController@updateCourse'
+           ));
+
+           #删除教程
+           Route::post('/delete',array(
+            'as' => 'backend_course_course_softdelete',
+            'uses' => 'Backend\Course\CourseController@softdeleteCourse'
+           ));
+        });
+
+
+        #教程文章管理
+        Route::group(array('prefix'=>'CourseArticles'), function () {
+
+           #教程文章列表页面
+           Route::get('/',array(
+            'as' => 'backend_course_articles_index',
+            'uses'=>'Backend\Course\CourseArticleController@getArticles'
+           ));
+           #教程文章添加页面
+           Route::get('/create',array(
+            'as'=> 'backend_course_articles_create',
+            'uses'=>'Backend\Course\CourseArticleController@_create'
+           ));
+           #教程文章回收站页面
+           Route::get('/trashed',array(
+            'as' => 'backend_course_articles_trashed',
+            'uses' => 'Backend\Course\CourseArticleController@getTrashedArticles'
+           ));
+
+           # 教程文章发表
+           Route::post('/create',array(
+            'as' => 'backend_course_articles_create',
+            'uses' => 'Backend\Course\CourseArticleController@createArticle'
+           ));
+
+
+          # 教程文章编辑页面
+           Route::get('/update', array(
+           'as' => 'backend_course_articles_update',
+           'uses' => 'Backend\Course\CourseArticleController@update'
+         ));
+
+
+            #  教程文章修改
+            Route::post('/update', array(
+            'as' => 'backend_course_articles_update',
+            'uses' => 'Backend\Course\CourseArticleController@_update'
+            ));
+
+            # 改变 教程文章的发布状态
+            Route::post('/change-status', array(
+            'as' => 'backend_course_articles_change-status',
+            'uses' => 'Backend\Course\CourseArticleController@_changeStatus'
+            ));
+
+            # 教程 文章彻底删除
+            Route::post('/delete', array(
+            'as' => 'backend_course_articles_delete',
+            'uses' => 'Backend\Course\CourseArticleController@deleteTrashedArticle'
+            ));
+
+
+            #  教程文章软删除
+            Route::post('/softdelete',array(
+            'as' => 'backend_course_articles_softdelete',
+            'uses' =>'Backend\Course\CourseArticleController@softdeleteArticle'
+            ));
+
+
+
+             # 文章恢复
+             Route::post('/restore', array(
+                'as' => 'backend_course_articles_restore',
+                'uses' => 'Backend\Course\CourseArticleController@restoreTrashedArticle'
+            ));
+             # 改变文章排序
+            Route::post('/sort', array(
+                'as' => 'backend_course_articles_sort',
+                'uses' => 'Backend\Course\CourseArticleController@articleSort'
+            ));
+
+        });
+       });
+
+    });
+   });
+ });
