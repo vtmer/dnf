@@ -110,7 +110,7 @@ class ArticleController extends BaseController{
 
     /**
      * 动作：修改文章
-     * @return Resonpse
+     * @return Responpse
      */
     public function _update(ArticleRequest $request)
     {

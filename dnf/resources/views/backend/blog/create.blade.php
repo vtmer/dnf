@@ -26,14 +26,14 @@
                           <label for="title" class="col-sm-1 control-label">图片：</label>
                           <div class="col-sm-10">
                               <div class="has-feedback">
-                                  <img width="300" id="demo-img" src="{{{$data->img_URL or ''}}}">
+                                  <img width="300" id="img" src="{{{$data->img_URL or ''}}}">
                                    <input type="hidden" name="img_URL" id="img_URL" value="{{{$data->img_URL or ''}}}" >
                                    <br>
-                                  <button class="btn btn-primary" type="button" onclick="uploadPic('demo-img');" />上传图片</button>
+                                  <button class="btn btn-primary" type="button" onclick="uploadPic('img');" />上传图片</button>
                               </div>
                          </div>
                </div> <!-- / .form-group -->
-               
+
 
                <div class="panel-body">
                     <div class="form-group">
@@ -48,7 +48,7 @@
 
 
 
-                  
+
                      <div class="form-group">
                       <label for="tag" class="col-md-1 control-label">{{ Lang::get('backend.form.blog.tag')}}：</label>
                           <div class="col-md-9 select2-primary">
@@ -57,11 +57,11 @@
                                   <select  id = "tag"  name="tag_id[]" multiple="multiple"  class="form-control" placeholder= "请选择标签（可多选）">
                                   <option></option>
                                     @foreach($tags as $tag)
-                                    <option value="{{ $tag['id'] }}" 
+                                    <option value="{{ $tag['id'] }}"
                                     @if(isset($data)  )
-                                    @foreach($data->tags as $Tag) 
-                                        @if($Tag->id == $tag->id) 
-                                        selected 
+                                    @foreach($data->tags as $Tag)
+                                        @if($Tag->id == $tag->id)
+                                        selected
                                     @endif
 
                                     @endforeach
@@ -69,10 +69,10 @@
                                     >{{{ $tag->tag }}}</option>
                                     @endforeach
                                 </select>
-                               </div>    
-                            </div>                 
+                               </div>
+                            </div>
                         </div>
-                      
+
                                <button  type="button"  class="btn btn-primary"  data-toggle="modal" data-target="#new_myModal_tag" >
                                <span  class=" fa-tag"   style="font-size: 20px;"></span>
                                 </button>
@@ -88,7 +88,7 @@
                                 <i class="fa fa-asterisk form-control-feedback"></i>
                             </div>
                          </div>
-                    </div> <!-- / .form-group --> 
+                    </div> <!-- / .form-group -->
 
                   <div class="form-group">
                       <label for="source" class="col-md-1 control-label">{{ Lang::get('backend.form.blog.source')}}：</label>
@@ -96,7 +96,7 @@
                           <div class="has-feedback">
                             <input type="text" class="form-control" name="source" id="source" value="{{ $data->source or old('source') }}"  placeholder="@lang('backend.messages.input-source')">
                              <i class="fa fa-asterisk form-control-feedback"></i>
-                           </div> 
+                           </div>
                         </div>
                     </div>
 
@@ -106,9 +106,9 @@
                           <div class="has-feedback">
                             <input type="text" class="form-control" name="description" id="description" value="{{ $data->description or old('description') }}"  placeholder="@lang('backend.messages.input-source')">
                              <i class="fa fa-asterisk form-control-feedback"></i>
-                           </div> 
+                           </div>
                         </div>
-                    </div>    
+                    </div>
 
 
 
@@ -119,7 +119,7 @@
                             <div class="has-feedback">
                              <textarea  class="form-control"  name="content"  id="content" > {{ $data->content or old('content') }}</textarea>
                             </div>
-                     </div> 
+                     </div>
                   </div> <!-- / .form-group -->
 
                     <div class="form-group">
@@ -153,7 +153,7 @@
                            <div class="col-sm-offset-8 col-sm-10">
                              <button type="submit" class="btn btn-primary" > {{ Lang::get('backend.upload') }}</button>
                            </div>
-                       </div> <!-- / .form-group -->            
+                       </div> <!-- / .form-group -->
                   </div>
            </form>
       </div>
@@ -222,7 +222,7 @@
                                 allowClear: true,
                                 placeholder: "<?php echo Lang::get('backend.messages.select-category'); ?>"
                                 });
-   
+
                                 // Single select
                                 $("#draft").select2({
                                 allowClear: true,
