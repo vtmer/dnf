@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Backend\BaseModel;
 use App\Models\Backend\User;
 use App\Models\Backend\blog\category;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends BaseModel{
 
@@ -18,13 +19,13 @@ class Category extends BaseModel{
 /*
 |----------------------------------------
 |根据id删除栏目
-|同时删除该栏目下的文章
+|
 |---------------------------------------
 */
 
    public static function deleteById($id)
    {
-        return static::destroy($id);
+        return static::delete($id);
    }
 
 /*

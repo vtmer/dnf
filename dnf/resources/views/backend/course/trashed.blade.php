@@ -1,7 +1,7 @@
 @extends('backend.layouts.dashboard')
 
 @section('title')
-{{ Lang::get('backend.title.blog.trashed') }}
+{{ Lang::get('backend.title.course.trashed') }}
 @stop
 
 @section('container')
@@ -30,13 +30,12 @@
                         <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="articleList">
                             <thead>
                                 <tr>
-                                    <th>{{ Lang::get('backend.form.blog.title') }}</th>
-                                    <th>{{ Lang::get('backend.form.blog.tag') }}</th>
-                                    <th>{{ Lang::get('backend.form.blog.author') }}</th>
-                                    <th>{{ Lang::get('backend.form.blog.category-belong') }}</th>
+                                    <th>{{ Lang::get('backend.form.course.title') }}</th>
+                                    <th>{{ Lang::get('backend.form.course.course-belong') }}</th>
+                                    <th>{{ Lang::get('backend.form.course.author') }}</th>
                                     <th>{{ Lang::get('backend.create-time') }}</th>
                                     <th>{{ Lang::get('backend.form.status') }}</th>
-                                    <th>{{ Lang::get('backend.form.blog.deleter') }}</th>
+                                    <th>{{ Lang::get('backend.form.course.updater') }}</th>
                                     <th>{{ Lang::get('backend.update-time') }}</th>
                                     <th>{{ Lang::get('backend.operate') }}</th>
                                     <th>{{ Lang::get('backend.Forcibly remove') }}</th>
@@ -45,43 +44,39 @@
                             </thead>
                             <tbody>
                                 @foreach($datas as $data)
-                                <tr id="articleList-data-id-{{ $data->id }}">
+                                                               <tr id="articleList-data-id-{{ $data->id }}">
                                     <td class="center">{{{ $data->title}}}</td>
-                                    <td class= "center">                                     
-                                                <div class="row">
-                                                        
-                                                        <div  class="col-sm-12">
-                                                            @foreach($data->tags as $tag) 
-                                                                 <a href="#" class="label label-primary label-tag"  title = "查看标签下所有文章" > {{$tag->tag}}</a>    
-                                                            @endforeach                    
-                                                        </div>
-                                                    </div>
-                                           
-                                   </td>
-                                    <td class="center">{{{ $data->author }}}</td>
-                                    <td class= "center">{{{ $data->category->category}}}</td>
+                                    <td class= "center">
+                                                    @foreach($courses as $course)
+                                                          @if($data->course_id == $course->id)
+                                                                {{{$course->name}}}
+                                                                {{{$course_id = $course->id}}}
+                                                            @endif
+                                                    @endforeach
+                                    </td>
+                                    <td class="center">{{{ $data->author}}}</td>
                                     <td class="center">{{{ $data->created_at }}}</td>
                                     <td class="center">
-                                         {!! AclWidget::change(route('backend_blog_articles_change-status'), 'blog', 'articles', 'change-status', Lang::get('backend.button-status.article-status.'.$data->draft), 'status-id-'.$data->id, $data->id) !!}
+                                         {!! AclWidget::change(route('backend_course_articles_change-status'), 'course', 'articles', 'change-status', Lang::get('backend.button-status.article-status.'.$data->draft), 'status-id-'.$data->id, $data->id) !!}
 
                                     </td>
                                     <td class="updater">{{{ $data->updater}}}</td>
                                     <td class="center" >{{{ $data->updated_at}}}</td>
-                                     <td class= "center">
-                                             <form id="form_article"  action="{{ route('backend_blog_articles_restore') }}"  method="POST"  >
+                                  <td class= "center">
+                                             <form id="form_article"  action="{{ route('backend_course_articles_restore') }}"  method="POST"  >
                                                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                      <input type="hidden" name="id" value="{{ $data->id or '' }}">
-                                                     <button type="submit" class="btn btn-primary" > 恢复</button>
+                                                     <input type="hidden" name="course_id" value="{{ $course_id }}">
+                                                     <button type="submit" class="btn btn-primary" >恢复</button>
                                              </form>
                                          </td>      
                                           <td class= "center">
-                                             <form id="form_article"  action="{{ route('backend_blog_articles_delete') }}"  method="POST"  >
+                                             <form id="form_article"  action="{{ route('backend_course_articles_delete') }}"  method="POST"  >
                                                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                      <input type="hidden" name="id" value="{{ $data->id or '' }}">
                                                      <button type="submit" class="btn btn-rounded btn-primary fa-trash-o" > </button>
                                              </form>
                                     </td>
-                                  
                                 </tr>
                                 @endforeach
                             </tbody>

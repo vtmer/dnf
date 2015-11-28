@@ -11,6 +11,8 @@ return [
     'category-management'=>'栏目管理',
     'article-management'=>'文章管理',
     'tag-management'=>'标签管理',
+    'course-management'=>'教程管理',
+    'courseArticle-management'=>'教程文章管理',
     'trashed'=>'回收站',
     'newest-action' => '最新动态',
     'where' => '所在位置',
@@ -21,6 +23,7 @@ return [
     'add-group'=> '增加用户组',
     'add-user'=> '增加用户',
     'create'=>'添加文章',
+    'createCourse'=>'添加教程文章',
     'edit-user'=> '编辑用户',
     'edit-self'=> '编辑个人信息',
     'account' => '帐号',
@@ -99,15 +102,35 @@ return [
 	     'description' =>'简介',
 	     'content'=>'内容',
 	     'sort'=>'顺序',
-                  'source'=>'来源',
-                  'status'=>'状态',
-	     'view'=>'浏览量',
+                   'source'=>'来源',
+                   'status'=>'状态',
+	      'view'=>'浏览量',
                    'post'=>'发布',
                    'trashed'=>'草稿',
                    'updater'=>'更新者',
                     'deleter'=>'删除者',
                    'tags'=>'标签',
 	],
+
+            'course' =>[
+                    'title'=>'标题',
+                    'author' =>'作者',
+                    'tag' =>'标签',
+                    'name'=>'教程名',
+                    'course-belong' => '所属教程',
+                    'creator'=>'创建人',
+                    'course-time'=>'创建时间',
+                    'update-time'=>'更新时间',
+                    'description' =>'简介',
+                    'content'=>'内容',
+                    'status'=>'状态',
+                    'view'=>'浏览量',
+                    'post'=>'发布',
+                    'trashed'=>'草稿',
+                    'updater'=>'更新者',
+                    'deleter'=>'删除者',
+                    'tags'=>'标签',
+             ],
     ],
 
     # website page title
@@ -128,6 +151,16 @@ return [
             'article'=>'文章管理',
             'tag' => '标签管理',
         ],
+        'course' => [
+            'index' => '教程管理',
+            'trashed' => '教程文章回收站',
+            'create' => '教程--添加文章',
+            'update'=>'更新教程文章',
+            'course'=>'教程管理',
+            'article'=>'教程文章管理',
+            'trashed' => '教程文章回收站',
+        
+        ],
     ],
 
     # messages
@@ -137,6 +170,7 @@ return [
         'select-user' => '请选择用户',
         'select-group' => '请选择用户组',
         'select-category' => '请选择栏目',
+        'select-course' => '请选择教程',
         'select-status' => '请选择文章状态',
         'input-source' => '请输入文章来源',
         'input-description' => '请输入文章简介',
@@ -155,8 +189,8 @@ return [
             'content' => '内容长度最长为:',
 
         ],
-        'URL' => '图片URL 需要符合URL格式',
-        'required' => [
+           'URL' => '图片URL 需要符合URL格式',
+           'required' => [
             'name' => '名称不为空',
             'module' => '模块名不为空',
             'class' => '类名不为空',
@@ -176,12 +210,14 @@ return [
              'source' =>'文章来源不能为空',
              'category_id'=>'文章栏目不能为空',
              'tag_id'=>'文章标签不能为空',
+             'course_id'=>'教程不能为空',
         ],
         'unique' => [
-            'name' => '名称必须唯一',
+             'name' => '名称必须唯一',
              'category' => '栏目必须唯一',
              'title' => '文章标题必须唯一',
-              'tag' => '标签必须唯一',
+             'tag' => '标签必须唯一',
+             'course' => '教程名称必须唯一',
              
         ],
         'integer' => [
@@ -203,6 +239,7 @@ return [
              'updater'=>'更新者长度范围为:',
               'author'=>'作者长度范围为:',
               'tag'=>'标签长度范围为:',
+              'course'=>'教程名称长度范围为:',
         ],
         'confirmed' => [
             'password' => '密码前后不一致',
@@ -237,6 +274,15 @@ return [
         '24' => '恢复了文章',
         '25' =>'强制删除了文章',
         '26' =>'由于栏目被删除，软删除该栏目下的文章',
+        '27' =>'新建了教程',
+        '28' =>'编辑了教程',
+        '29' =>'删除了教程',
+        '29' =>'新建了教程文章',
+        '30' =>'更改了教程文章状态',
+        '31' =>'编辑了教程文章',
+        '32' =>'删除了教程文章',
+        '33' =>'恢复了教程文章',
+        '34' =>'强制删除了文章',
 
     ],
 

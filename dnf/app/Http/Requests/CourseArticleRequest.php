@@ -5,7 +5,7 @@ use Lang;
 use Illuminate\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ArticleRequest extends FormRequest {
+class CourseArticleRequest extends FormRequest {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -27,20 +27,16 @@ class ArticleRequest extends FormRequest {
 		return [
 		           'title'=> "required|between:1,20",
 		           'author'=> 'required|between:1,15',
-		            'category_id'=>'required',
-		            'description' => 'required',
-		            'tag_id' => 'required',
-		            'source'=> 'required|between:1,60',
-		            'description' => 'required',
+		            'course_id'=>'required',
 	 	            'img_URL'=>'URL',
 	                         'content'=>'required',
 		];
 	}
 
-        /**
+       /**
          *错误信息
          *
-	     *@return array
+         *@return array
          */
 	public function messages()
         {
@@ -51,12 +47,8 @@ class ArticleRequest extends FormRequest {
 	            'title.required'=>$rules['required']['title'],
 	            'author.required'=>$rules['required']['author'],
 	            'author.between' => $rules['between']['author'].':min ~ :max',
-	            'category_id.required'=>$rules['required']['category_id'],
-	            'tag_id.required'=> $rules['required']['tag_id'],
-	            'description.required'=>$rules['required']['description'],
+	            'course_id.required'=>$rules['required']['course_id'],
 	            'img_URL.url'=> $rules['URL'],
-	            'source.required'=> $rules['required']['source'],
-	    	'source.between'=>$rules['between']['source'].':min ~ :max',
                           'content.required' => $rules['required']['content'],
         ];
 	}

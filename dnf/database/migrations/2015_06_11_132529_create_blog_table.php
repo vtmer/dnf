@@ -49,7 +49,7 @@ class CreateBlogTable extends Migration {
                 $table->integer('updated_at');
 		$table->softDeletes();
 
-		$table->engine = 'InnoDB'; 
+		$table->engine = 'InnoDB';
 	});
 }
 
