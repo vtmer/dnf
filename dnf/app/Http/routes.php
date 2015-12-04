@@ -478,6 +478,7 @@ Route::group(['prefix' => 'backend'], function() {
                 'as' => 'backend_course_articles_restore',
                 'uses' => 'Backend\Course\CourseArticleController@restoreTrashedArticle'
             ));
+
              # 改变文章排序
             Route::post('/sort', array(
                 'as' => 'backend_course_articles_sort',
