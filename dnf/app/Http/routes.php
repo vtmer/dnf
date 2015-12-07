@@ -488,6 +488,64 @@ Route::group(['prefix' => 'backend'], function() {
         });
        });
 
+   Route::group(['prefix' => 'aboutus'], function() {
+          #关于我们管理
+       Route::group(array('prefix' => 'vtmer'),function () {
+           #Vtmer列表
+           route::get('/',array(
+               'as'=> 'backend_aboutus_vtmer_index',
+               'uses'=>'Backend\Aboutus\VtmerController@showVtmer'
+           ));
+
+           #Vtmer添加页面
+           Route::get('/create',array(
+            'as'=> 'backend_aboutus_vtmer_create',
+            'uses'=>'Backend\Aboutus\VtmerController@_create'
+           ));
+
+            #文章编辑页面
+           Route::get('/update',array(
+            'as'=>'backend_aboutus_vtmer_update',
+            'uses'=>'Backend\Aboutus\VtmerController@update'
+            ));
+           # 回收站页面
+           Route::get('/trashed',array(
+            'as' => 'backend_aboutus_vtmer_trashed',
+            'uses' => 'Backend\Aboutus\VtmerController@getTrashedVtmer'
+           ));
+
+           #添加Vtmer
+           Route::post('/create',array(
+            'as' => 'backend_aboutus_vtmer_create',
+            'uses' =>'Backend\Aboutus\VtmerController@createVtmer'
+           ));
+
+           #修改Vtmer信息
+           Route::post('/update',array(
+            'as' => 'backend_aboutus_vtmer_update',
+            'uses'=>'Backend\Aboutus\VtmerController@_update'
+           ));
+
+           #软删除Vtmer个人信息
+           Route::post('/softdelete',array(
+            'as' => 'backend_aboutus_vtmer_softdelete',
+            'uses' => 'Backend\Aboutus\VtmerController@softdeleteVtmer'
+           ));
+
+           #恢复Vtmer个人信息
+           Route::post('/restore',array(
+            'as'=>'backend_aboutus_vtmer_restore',
+            'uses'=>'Backend\Aboutus\VtmerController@restoreTrashedVtmer'
+            ));
+
+           #删除Vtmer个人信息
+           Route::post('/delete',array(
+            'as'=> 'backend_aboutus_vtmer_delete',
+            'uses'=>'Backend\Aboutus\VtmerController@deleteTrashedVtmer'
+            ));
+        });
+   });
+
     });
    });
  });

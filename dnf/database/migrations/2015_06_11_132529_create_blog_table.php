@@ -16,7 +16,7 @@ class CreateBlogTable extends Migration {
 	  Schema::create('blog_categories',function($table){
 		$table->increments('id'     );
 		$table->TEXT( 'category'    );
-                $table->TEXT('creator');
+          		 $table->TEXT('creator');
 		$table->TEXT('updater');
 		$table->integer('sort');
 		$table->integer('created_at' );

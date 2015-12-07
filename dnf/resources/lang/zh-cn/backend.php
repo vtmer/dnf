@@ -13,7 +13,9 @@ return [
     'tag-management'=>'标签管理',
     'course-management'=>'教程管理',
     'courseArticle-management'=>'教程文章管理',
+    'Vtmer-management'=>'Vtmer个人信息管理',
     'trashed'=>'回收站',
+    'trashed-vtmer'=>'Vtmer个人信息回收站',
     'newest-action' => '最新动态',
     'where' => '所在位置',
     'signin' => '登陆',
@@ -22,8 +24,10 @@ return [
     'add-menu'=> '增加功能菜单',
     'add-group'=> '增加用户组',
     'add-user'=> '增加用户',
+    'add-vtmer'=> '增加Vtmer个人信息',
     'create'=>'添加文章',
     'createCourse'=>'添加教程文章',
+    'create-vtmer'=>'添加Vtmer',
     'edit-user'=> '编辑用户',
     'edit-self'=> '编辑个人信息',
     'account' => '帐号',
@@ -95,21 +99,21 @@ return [
 	    'author' =>'作者',
 	    'tag' =>'标签',
 	    'category'=>'栏目名',
-                 'category-belong' => '所属栏目',
-                  'creator'=>'创建人',
-                  'category-time'=>'创建时间',
-                  'update-time'=>'更新时间',
-	     'description' =>'简介',
-	     'content'=>'内容',
-	     'sort'=>'顺序',
-                   'source'=>'来源',
-                   'status'=>'状态',
-	      'view'=>'浏览量',
-                   'post'=>'发布',
-                   'trashed'=>'草稿',
-                   'updater'=>'更新者',
-                    'deleter'=>'删除者',
-                   'tags'=>'标签',
+        'category-belong' => '所属栏目',
+        'creator'=>'创建人',
+        'category-time'=>'创建时间',
+        'update-time'=>'更新时间',
+	    'description' =>'简介',
+	    'content'=>'内容',
+	    'sort'=>'顺序',
+       'source'=>'来源',
+        'status'=>'状态',
+	    'view'=>'浏览量',
+        'post'=>'发布',
+        'trashed'=>'草稿',
+        'updater'=>'更新者',
+        'deleter'=>'删除者',
+        'tags'=>'标签',
 	],
 
             'course' =>[
@@ -130,6 +134,14 @@ return [
                     'updater'=>'更新者',
                     'deleter'=>'删除者',
                     'tags'=>'标签',
+	            ],
+      'aboutus' =>[
+                'name'=>'姓名',
+                'time'=>'加入时间',
+                'img'=>'头像',
+                'introduction'=>'简介',
+                'blog'=>'博客',
+                'email'=>'邮箱',
              ],
     ],
 
@@ -159,14 +171,19 @@ return [
             'course'=>'教程管理',
             'article'=>'教程文章管理',
             'trashed' => '教程文章回收站',
-        
+        ],
+        'aboutus' => [
+            'index' => 'Vtmer个人信息管理管理',
+            'trashed' => '个人信息回收站',
+            'create' => '个人信息管理--添加',
+            'update'=>'个人信息管理--更新',
         ],
     ],
 
     # messages
     'messages' => [
         'about-module' => '如果涉及模块名，那么请填写，否则可以不填写',
-        'select-parent' => '请选择父级功能',   
+        'select-parent' => '请选择父级功能',
         'select-user' => '请选择用户',
         'select-group' => '请选择用户组',
         'select-category' => '请选择栏目',
@@ -178,8 +195,8 @@ return [
         'confirm' => '确定此操作吗?',
         'select-all' => '点击我全选',
     ],
-  
-  
+
+
     # rules messages
     'rules' => [
         'max' => [
@@ -189,9 +206,15 @@ return [
             'content' => '内容长度最长为:',
 
         ],
-           'URL' => '图片URL 需要符合URL格式',
-           'required' => [
+        'URL' =>[
+        'img_URL'=>'图片URL 需要符合URL格式',
+        'blog'=>'blog的地址需要符合URL',
+         ],
+
+        'required' => [
             'name' => '名称不为空',
+            'time' => '加入时间不为空',
+            'introduction' => '个人简介不为空',
             'module' => '模块名不为空',
             'class' => '类名不为空',
             'function' => '函数名不为空',
@@ -211,14 +234,18 @@ return [
              'category_id'=>'文章栏目不能为空',
              'tag_id'=>'文章标签不能为空',
              'course_id'=>'教程不能为空',
-        ],
+             'blog'=>'博客不能为空',
+             'email'=>'email不能为空',
+             'img_URL'=>'头像不能为空',
+         ],
+
         'unique' => [
              'name' => '名称必须唯一',
              'category' => '栏目必须唯一',
              'title' => '文章标题必须唯一',
              'tag' => '标签必须唯一',
              'course' => '教程名称必须唯一',
-             
+
         ],
         'integer' => [
             'pid' => '父级菜单值数据类型错误',
@@ -229,21 +256,28 @@ return [
         ],
         'between' => [
             'name' => '名称长度范围为',
-            'level' => '等级范围为',
-            'mobile' => '电话范围为',
-            'password' => '密码长度范围为',
+            'author'=>'作者长度范围为',
+             'level' => '等级范围为',
+             'mobile' => '电话范围为',
+             'password' => '密码长度范围为',
              'title' => '文章标题长度范围为:',
-            'source' => '文章来源长度范围为:',
-            'category' => '栏目长度范围为:',
+             'source' => '文章来源长度范围为:',
+             'category' => '栏目长度范围为:',
              'creator' => '创建人长度范围为:',
              'updater'=>'更新者长度范围为:',
-              'author'=>'作者长度范围为:',
-              'tag'=>'标签长度范围为:',
               'course'=>'教程名称长度范围为:',
+             'tag'=>'标签长度范围为:',
+             'introduction'=>'个人简介长度范围为:',
         ],
         'confirmed' => [
             'password' => '密码前后不一致',
-        ]
+        ],
+        'Date' => [
+            'time' => '输入的加入时间需要符合格式',
+        ],
+        'email' => [
+            'email' => 'email需要符合格式:example@exam.com',
+        ],
     ],
 
     # 动态分类
@@ -283,6 +317,10 @@ return [
         '32' =>'删除了教程文章',
         '33' =>'恢复了教程文章',
         '34' =>'强制删除了文章',
+        '40'=>'新增了Vtmer个人信息',
+        '41'=>'修改了Vtmer个人信息',
+        '42'=>'删除了Vtmer个人信息',
+        '43'=>'恢复了Vtmer个人信息',
 
     ],
 
