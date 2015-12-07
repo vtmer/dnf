@@ -7,74 +7,71 @@
 @section('container')
 <div id="content-wrapper">
 
-  <style type="text/css">
-  .btn{display: block;margin-top: 10px;}
-</style>
     <div class="row">
         <div class="col-sm-12">
 
-            <form id="form_article"  action="{{ $formUrl }}"   method="POST"  class="panel form-horizontal">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                 <input type="hidden" name="id" value="{{ $data->id or '' }}">
-                 <input type="hidden" name="updater"  id="updater" value='无' />
-                <div class="panel-heading">
-                    <span class="panel-title">{{ Lang::get('backend.create')}}</span>
+        <form id="form_article"  action="{{ $formUrl }}"   method="POST"  class="panel form-horizontal">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+             <input type="hidden" name="id" value="{{ $data->id or '' }}">
+             <input type="hidden" name="updater"  id="updater" value='无' />
+            <div class="panel-heading">
+                <span class="panel-title">{{ Lang::get('backend.create')}}</span>
 
-                </div>
+            </div>
+
+             <div class="form-group">
+                      <label for="title" class="col-sm-1 control-label">图片：</label>
+                      <div class="col-sm-10">
+                          <div class="has-feedback">
+                              <img width="300" id="img" src="{{{$data->img_URL or ''}}}">
+                               <input type="hidden" name="img_URL" id="img_URL" value="{{{$data->img_URL or ''}}}" >
+                               <br>
+                              <button class="btn btn-primary" type="button" onclick="uploadPic('demo-img');" style="padding: 8px 63px 9px 55px;"/>上传图片</button>
+                          </div>
+                     </div>
+           </div> <!-- / .form-group -->
+
+
+           <div class="panel-body">
+                <div class="form-group">
+                    <label for="title" class="col-sm-1 control-label">{{ Lang::get('backend.form.blog.title')}}：</label>
+                    <div class="col-sm-9">
+                        <div class="has-feedback">
+                            <input type="text" class="form-control" name="title" id="title"   value="{{ $data->title or old('title') }}"  placeholder="文章标题">
+                            <i class="fa fa-asterisk form-control-feedback"></i>
+                        </div>
+                    </div>
+                  </div> <!-- / .form-group -->
+
+
+
 
                  <div class="form-group">
-                          <label for="title" class="col-sm-1 control-label">图片：</label>
-                          <div class="col-sm-10">
-                              <div class="has-feedback">
-                                  <img width="300" id="demo-img" src="{{{$data->img_URL or ''}}}">
-                                   <input type="hidden" name="img_URL" id="img_URL" value="{{{$data->img_URL or ''}}}" >
-                                   <br>
-                                  <button class="btn btn-primary" type="button" onclick="uploadPic('demo-img');" style="padding: 8px 63px 9px 55px;"/>上传图片</button>
-                              </div>
-                         </div>
-               </div> <!-- / .form-group -->
+                  <label for="tag" class="col-md-1 control-label">{{ Lang::get('backend.form.blog.tag')}}：</label>
+                      <div class="col-md-9 select2-primary">
+                          <div class=" select2-disabled-examples select2-colors-examples">
+                            <div class="select2-primary">
+                              <select  id = "tag"  name="tag_id[]" multiple="multiple"  class="form-control" placeholder= "请选择标签（可多选）">
+                              <option></option>
+                                @foreach($tags as $tag)
+                                <option value="{{ $tag['id'] }}"
+                                @if(isset($data)  )
+                                @foreach($data->tags as $Tag)
+                                    @if($Tag->id == $tag->id)
+                                    selected
+                                @endif
 
-
-               <div class="panel-body">
-                    <div class="form-group">
-                        <label for="title" class="col-sm-1 control-label">{{ Lang::get('backend.form.blog.title')}}：</label>
-                        <div class="col-sm-9">
-                            <div class="has-feedback">
-                                <input type="text" class="form-control" name="title" id="title"   value="{{ $data->title or old('title') }}"  placeholder="文章标题">
-                                <i class="fa fa-asterisk form-control-feedback"></i>
-                            </div>
+                                @endforeach
+                                  @endif
+                                >{{{ $tag->tag }}}</option>
+                                @endforeach
+                            </select>
+                           </div>
                         </div>
-                      </div> <!-- / .form-group -->
+                    </div>
 
-
-
-
-                     <div class="form-group">
-                      <label for="tag" class="col-md-1 control-label">{{ Lang::get('backend.form.blog.tag')}}：</label>
-                          <div class="col-md-9 select2-primary">
-                              <div class=" select2-disabled-examples select2-colors-examples">
-                                <div class="select2-primary">
-                                  <select  id = "tag"  name="tag_id[]" multiple="multiple"  class="form-control" placeholder= "请选择标签（可多选）">
-                                  <option></option>
-                                    @foreach($tags as $tag)
-                                    <option value="{{ $tag['id'] }}"
-                                    @if(isset($data)  )
-                                    @foreach($data->tags as $Tag)
-                                        @if($Tag->id == $tag->id)
-                                        selected
-                                    @endif
-
-                                    @endforeach
-                                      @endif
-                                    >{{{ $tag->tag }}}</option>
-                                    @endforeach
-                                </select>
-                               </div>
-                            </div>
-                        </div>
-
-                               <button  type="button"  class="btn-primary"  data-toggle="modal" data-target="#new_myModal_tag" >
-                               <span  class="fa fa-tag"   style="font-size: 20px;"></span>
+                               <button  type="button"  class="btn btn-primary"  data-toggle="modal" data-target="#new_myModal_tag" >
+                               <span  class="fa fa-tag"   style="font-size: 16px;"></span>
                                 </button>
 
                     </div>

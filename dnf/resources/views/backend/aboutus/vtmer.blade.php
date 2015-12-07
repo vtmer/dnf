@@ -51,7 +51,7 @@
                                            <form id="form_article"  action="{{ route('backend_aboutus_vtmer_softdelete')}}"  method="POST"  >
                                                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                      <input type="hidden" name="id" value="{{ $data->id or '' }}">
-                                                     <button type="submit" class="btn btn-rounded btn-primary fa-trash-o" > </button>
+                                                     <button type="submit" class="btn btn-rounded btn-primary fa-cab" > </button>
                                             </form>
 
                         </div>

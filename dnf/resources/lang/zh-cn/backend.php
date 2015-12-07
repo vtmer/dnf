@@ -14,6 +14,7 @@ return [
     'course-management'=>'教程管理',
     'courseArticle-management'=>'教程文章管理',
     'Vtmer-management'=>'Vtmer个人信息管理',
+    'product-management'=>'产品案例管理',
     'trashed'=>'回收站',
     'trashed-vtmer'=>'Vtmer个人信息回收站',
     'newest-action' => '最新动态',
@@ -28,6 +29,9 @@ return [
     'create'=>'添加文章',
     'createCourse'=>'添加教程文章',
     'create-vtmer'=>'添加Vtmer',
+    'add-product'=>'增加产品案例',
+    'create'=>'添加文章',
+    'edit-product'=>'编辑产品案例',
     'edit-user'=> '编辑用户',
     'edit-self'=> '编辑个人信息',
     'account' => '帐号',
@@ -94,6 +98,7 @@ return [
         'password' => '密码',
         'old-password' => '原密码',
         'password-confirmation' => '重复密码',
+
         'blog' =>[
 	    'title'=>'标题',
 	    'author' =>'作者',
@@ -143,6 +148,12 @@ return [
                 'blog'=>'博客',
                 'email'=>'邮箱',
              ],
+     'product'=>[
+            'name'=>'名称',
+            'holder'=>'持有人',
+            'url' =>'链接',
+            'description'=>'简介',
+        ],
     ],
 
     # website page title
@@ -178,6 +189,12 @@ return [
             'create' => '个人信息管理--添加',
             'update'=>'个人信息管理--更新',
         ],
+        'product'=>[
+            'index' =>'产品案例管理',
+            'create'=>'添加产品案例',
+             'update'=>'更新产品案例',
+        ],
+
     ],
 
     # messages
@@ -228,7 +245,7 @@ return [
             'content' => '栏目不能为空',
              'creator' => '创建人不能为空',
              'updater'=>'更新者不能为空',
-             'description'=>'文章简介不能为空',
+             'description'=>'简介不能为空',
              'content' =>'文章内容不能为空',
              'source' =>'文章来源不能为空',
              'category_id'=>'文章栏目不能为空',
@@ -237,8 +254,9 @@ return [
              'blog'=>'博客不能为空',
              'email'=>'email不能为空',
              'img_URL'=>'头像不能为空',
-         ],
-
+             'holder'=>'持有人不能为空',
+             'url'=>'链接不能为空',
+        ],
         'unique' => [
              'name' => '名称必须唯一',
              'category' => '栏目必须唯一',
@@ -268,6 +286,9 @@ return [
               'course'=>'教程名称长度范围为:',
              'tag'=>'标签长度范围为:',
              'introduction'=>'个人简介长度范围为:',
+              'author'=>'作者长度范围为:',
+              'tag'=>'标签长度范围为:',
+              'holder'=>'持有人长度范围为:',
         ],
         'confirmed' => [
             'password' => '密码前后不一致',
@@ -321,7 +342,9 @@ return [
         '41'=>'修改了Vtmer个人信息',
         '42'=>'删除了Vtmer个人信息',
         '43'=>'恢复了Vtmer个人信息',
-
+        '50' => '添加了产品案例',
+        '51'=>'删除了产品案例',
+        '52'=>'编辑了产品案例',
     ],
 
     # pusher channel

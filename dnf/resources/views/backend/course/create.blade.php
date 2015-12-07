@@ -38,7 +38,7 @@
                                 </button>
                     </div>
 
-                
+
                     <div class="form-group">
                         <label for="title" class="col-sm-1 control-label">{{ Lang::get('backend.form.course.title')}}：</label>
                         <div class="col-sm-9">
@@ -59,7 +59,7 @@
                                 <i class="fa fa-asterisk form-control-feedback"></i>
                             </div>
                          </div>
-                    </div> <!-- / .form-group --> 
+                    </div> <!-- / .form-group -->
 
 
 
@@ -70,7 +70,7 @@
                             <div class="has-feedback">
                              <textarea  class="form-control"  name="content"  id="content" > {{ $data->content or old('content') }}</textarea>
                             </div>
-                     </div> 
+                     </div>
                   </div> <!-- / .form-group -->
 
 
@@ -92,7 +92,7 @@
                            <div class="col-sm-offset-8 col-sm-10">
                              <button type="submit" class="btn btn-primary" > {{ Lang::get('backend.upload') }}</button>
                            </div>
-                       </div> <!-- / .form-group -->            
+                       </div> <!-- / .form-group -->
                   </div>
            </form>
       </div>
@@ -161,7 +161,7 @@
                                 allowClear: true,
                                 placeholder: "<?php echo Lang::get('backend.messages.select-category'); ?>"
                                 });
-   
+
                                 // Single select
                                 $("#draft").select2({
                                 allowClear: true,

@@ -376,6 +376,7 @@ Route::group(['prefix' => 'backend'], function() {
             ));
 
         });
+
        });
 
 
@@ -546,6 +547,44 @@ Route::group(['prefix' => 'backend'], function() {
         });
    });
 
+Route::group(array('prefix' => 'product'),function () {
+           #页面:  产品案例列表
+           route::get('/',array(
+                   'as'=> 'backend_product_product_index',
+           'uses'=>'Backend\Product\ProductController@getProduct'
+           ));
+           #页面:   新建产品案例
+           Route::get('/create',array(
+            'as'=> 'backend_product_product_create',
+            'uses'=>'Backend\Product\ProductController@_create'
+           ));
+
+           # 产品案例发表
+           Route::post('/create',array(
+            'as' => 'backend_blog_articles_create',
+            'uses' => 'Backend\Product\ProductController@createProduct'
+           ));
+
+
+           # 页面   :   产品案例编辑
+           Route::get('/update', array(
+           'as' => 'backend_product_product_update',
+           'uses' => 'Backend\Product\ProductController@update'
+         ));
+
+
+           #修改产品案例
+           Route::post('/update',array(
+            'as' => 'backend_product_product_update',
+            'uses'=>'Backend\Product\ProductController@_update'
+           ));
+
+           #删除产品案例
+           Route::post('/delete',array(
+            'as' => 'backend_product_product_delete',
+            'uses' => 'Backend\Product\ProductController@deleteProduct'
+           ));
+        });
     });
    });
  });
