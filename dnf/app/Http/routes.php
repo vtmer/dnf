@@ -379,6 +379,174 @@ Route::group(['prefix' => 'backend'], function() {
 
        });
 
+
+     Route::group(['prefix' => 'course'], function() {
+          #教程管理
+       Route::group(array('prefix' => 'course'),function () {
+           #教程列表
+           route::get('/',array(
+                   'as'=> 'backend_course_course_index',
+                   'uses'=>'Backend\Course\CourseController@showCourse'
+           ));
+           #新建教程
+           Route::post('/create',array(
+            'as' => 'backend_course_course_create',
+            'uses' =>'Backend\Course\CourseController@createCourse'
+           ));
+
+            #在文章编辑页面直接创建教程名
+            Route::post('/createInIndex',array(
+            'as'=>'backend_course_course_createInIndex',
+            'uses'=>'Backend\Course\CourseController@createCourseInIndex'
+));
+
+           #修改教程
+           Route::post('/update',array(
+            'as' => 'backend_course_course_update',
+            'uses'=>'Backend\Course\CourseController@updateCourse'
+           ));
+
+           #删除教程
+           Route::post('/delete',array(
+            'as' => 'backend_course_course_softdelete',
+            'uses' => 'Backend\Course\CourseController@softdeleteCourse'
+           ));
+        });
+
+
+        #教程文章管理
+        Route::group(array('prefix'=>'CourseArticles'), function () {
+
+           #教程文章列表页面
+           Route::get('/',array(
+            'as' => 'backend_course_articles_index',
+            'uses'=>'Backend\Course\CourseArticleController@getArticles'
+           ));
+           #教程文章添加页面
+           Route::get('/create',array(
+            'as'=> 'backend_course_articles_create',
+            'uses'=>'Backend\Course\CourseArticleController@_create'
+           ));
+           #教程文章回收站页面
+           Route::get('/trashed',array(
+            'as' => 'backend_course_articles_trashed',
+            'uses' => 'Backend\Course\CourseArticleController@getTrashedArticles'
+           ));
+
+           # 教程文章发表
+           Route::post('/create',array(
+            'as' => 'backend_course_articles_create',
+            'uses' => 'Backend\Course\CourseArticleController@createArticle'
+           ));
+
+
+          # 教程文章编辑页面
+           Route::get('/update', array(
+           'as' => 'backend_course_articles_update',
+           'uses' => 'Backend\Course\CourseArticleController@update'
+         ));
+
+
+            #  教程文章修改
+            Route::post('/update', array(
+            'as' => 'backend_course_articles_update',
+            'uses' => 'Backend\Course\CourseArticleController@_update'
+            ));
+
+            # 改变 教程文章的发布状态
+            Route::post('/change-status', array(
+            'as' => 'backend_course_articles_change-status',
+            'uses' => 'Backend\Course\CourseArticleController@_changeStatus'
+            ));
+
+            # 教程 文章彻底删除
+            Route::post('/delete', array(
+            'as' => 'backend_course_articles_delete',
+            'uses' => 'Backend\Course\CourseArticleController@deleteTrashedArticle'
+            ));
+
+
+            #  教程文章软删除
+            Route::post('/softdelete',array(
+            'as' => 'backend_course_articles_softdelete',
+            'uses' =>'Backend\Course\CourseArticleController@softdeleteArticle'
+            ));
+
+
+
+             # 文章恢复
+             Route::post('/restore', array(
+                'as' => 'backend_course_articles_restore',
+                'uses' => 'Backend\Course\CourseArticleController@restoreTrashedArticle'
+            ));
+
+             # 改变文章排序
+            Route::post('/sort', array(
+                'as' => 'backend_course_articles_sort',
+                'uses' => 'Backend\Course\CourseArticleController@articleSort'
+            ));
+
+        });
+       });
+
+   Route::group(['prefix' => 'aboutus'], function() {
+          #关于我们管理
+       Route::group(array('prefix' => 'vtmer'),function () {
+           #Vtmer列表
+           route::get('/',array(
+               'as'=> 'backend_aboutus_vtmer_index',
+               'uses'=>'Backend\Aboutus\VtmerController@showVtmer'
+           ));
+
+           #Vtmer添加页面
+           Route::get('/create',array(
+            'as'=> 'backend_aboutus_vtmer_create',
+            'uses'=>'Backend\Aboutus\VtmerController@_create'
+           ));
+
+            #文章编辑页面
+           Route::get('/update',array(
+            'as'=>'backend_aboutus_vtmer_update',
+            'uses'=>'Backend\Aboutus\VtmerController@update'
+            ));
+           # 回收站页面
+           Route::get('/trashed',array(
+            'as' => 'backend_aboutus_vtmer_trashed',
+            'uses' => 'Backend\Aboutus\VtmerController@getTrashedVtmer'
+           ));
+
+           #添加Vtmer
+           Route::post('/create',array(
+            'as' => 'backend_aboutus_vtmer_create',
+            'uses' =>'Backend\Aboutus\VtmerController@createVtmer'
+           ));
+
+           #修改Vtmer信息
+           Route::post('/update',array(
+            'as' => 'backend_aboutus_vtmer_update',
+            'uses'=>'Backend\Aboutus\VtmerController@_update'
+           ));
+
+           #软删除Vtmer个人信息
+           Route::post('/softdelete',array(
+            'as' => 'backend_aboutus_vtmer_softdelete',
+            'uses' => 'Backend\Aboutus\VtmerController@softdeleteVtmer'
+           ));
+
+           #恢复Vtmer个人信息
+           Route::post('/restore',array(
+            'as'=>'backend_aboutus_vtmer_restore',
+            'uses'=>'Backend\Aboutus\VtmerController@restoreTrashedVtmer'
+            ));
+
+           #删除Vtmer个人信息
+           Route::post('/delete',array(
+            'as'=> 'backend_aboutus_vtmer_delete',
+            'uses'=>'Backend\Aboutus\VtmerController@deleteTrashedVtmer'
+            ));
+        });
+   });
+
 Route::group(array('prefix' => 'product'),function () {
            #页面:  产品案例列表
            route::get('/',array(

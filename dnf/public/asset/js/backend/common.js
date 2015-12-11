@@ -105,6 +105,7 @@ function uploadPic(scope)
     if (scope) {
         CKFinder.popup(null, null, null, function (url) {
             SetFileField(scope, url);
+            $('#img_URL').attr('value',url);
             $('#'+scope+"_URL").attr('value',url);
         });
     }
