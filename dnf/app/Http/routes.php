@@ -551,7 +551,7 @@ Route::group(array('prefix' => 'product'),function () {
            #页面:  产品案例列表
            route::get('/',array(
                    'as'=> 'backend_product_product_index',
-           'uses'=>'Backend\Product\ProductController@getProduct'
+                   'uses'=>'Backend\Product\ProductController@getProduct'
            ));
            #页面:   新建产品案例
            Route::get('/create',array(
@@ -561,7 +561,7 @@ Route::group(array('prefix' => 'product'),function () {
 
            # 产品案例发表
            Route::post('/create',array(
-            'as' => 'backend_blog_articles_create',
+            'as' => 'backend_product_product_create',
             'uses' => 'Backend\Product\ProductController@createProduct'
            ));
 

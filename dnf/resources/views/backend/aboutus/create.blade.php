@@ -1,6 +1,5 @@
 @extends('backend.layouts.dashboard')
-
-@section('title')
+('title')
 {{ Lang::get('backend.title.aboutus.create') }}
 @stop
 
