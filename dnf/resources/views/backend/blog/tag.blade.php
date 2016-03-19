@@ -12,7 +12,7 @@
             <!-- Page header, center on small screens -->
             <h1 class="col-xs-12 col-sm-10 text-center text-left-sm"><i class="fa fa-tags page-header-icon"></i>&nbsp;&nbsp;{{ Lang::get('backend.tag-management') }}</h1>
             <div class="col-xs-12 col-sm-2">
-  
+
                     <div class="visible-xs clearfix form-group-margin"></div>
                 </div>
             </div>
@@ -85,7 +85,7 @@
                </div>
           </div>
         </div>
-       
+
     </div><!--/.modal-body-->
     <div class="modal-footer">
     <button  type="submit" class="btn btn-primary" >保存</button>
@@ -134,7 +134,7 @@
 1
     var creator  =  $(this).parent().siblings("td.creator").text() ;
     $("#update-creator").val(creator);
-    
+
         var updater_id  =  $(this).siblings($("#updater_id")).attr("value") ;
     $("#update-creator-id").val(updater_id);
 

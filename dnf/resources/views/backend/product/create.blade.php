@@ -27,7 +27,7 @@
                                 <i class="fa fa-asterisk form-control-feedback"></i>
                             </div>
                         </div>
-                      </div> <!-- / .form-group -->   
+                      </div> <!-- / .form-group -->
 
                     <div class="form-group">
                         <label for="holder" class="col-sm-1 control-label">{{ Lang::get('backend.form.product.holder')}}：</label>
@@ -37,7 +37,7 @@
                                 <i class="fa fa-asterisk form-control-feedback"></i>
                             </div>
                          </div>
-                    </div> <!-- / .form-group --> 
+                    </div> <!-- / .form-group -->
 
 
 
@@ -49,7 +49,7 @@
                                 <i class="fa fa-asterisk form-control-feedback"></i>
                             </div>
                          </div>
-                    </div> <!-- / .form-group --> 
+                    </div> <!-- / .form-group -->
 
                  <div class="form-group">
                       <label for="description" class="col-md-1 control-label">{{ Lang::get('backend.form.product.description')}}：</label>
@@ -57,15 +57,15 @@
                           <div class="has-feedback">
                             <input type="text" class="form-control" name="description" id="description" value="{{ $data->description or old('description') }}"  placeholder="@lang('backend.messages.input-source')">
                              <i class="fa fa-asterisk form-control-feedback"></i>
-                           </div> 
+                           </div>
                         </div>
-                    </div>    
+                    </div>
 
                     <div class="form-group" id = "pic">
                           <label for="title" class="col-sm-1 control-label">图片：</label>
                             <!--   放置图片的HTML元素   -->
                    </div> <!-- / .form-group -->
-                      
+
 
                           <div class="form-group" style="margin-bottom: 0;">
                            <div class="col-sm-offset-4 col-sm-10">
@@ -74,13 +74,13 @@
                        </div> <!-- / .form-group -->
 
 
-                         
+
 
                            <div class="form-group" style="margin-bottom: 0;">
                            <div class="col-sm-offset-8 col-sm-10">
                              <button type="submit" class="btn btn-primary" > {{ Lang::get('backend.upload') }}</button>
                            </div>
-                       </div> <!-- / .form-group -->            
+                       </div> <!-- / .form-group -->
                   </div>
            </form>
       </div>
@@ -95,18 +95,18 @@
                 var r = confirm("Are  you  sure?");
                 if (r == true) {
                       $(".div"+id).remove();
-                } 
+                }
               }
 
               var num = 20;
               //add图片的HTML元素
                 function add(){
-                   $(" <div class=\"col-sm-3  div"+num+"\" ><div class=\"has-feedback\"><img width = \"auto\"height=\"200\" id=\""+num+"\" src=> <input type=\"hidden\" name=\""+num+"_URL\" id=\""+num+"_URL\" value=>"+  
+                   $(" <div class=\"col-sm-3  div"+num+"\" ><div class=\"has-feedback\"><img width = \"auto\"height=\"200\" id=\""+num+"\" src=> <input type=\"hidden\" name=\""+num+"_URL\" id=\""+num+"_URL\" value=>"+
                     "<br>&nbsp;&nbsp;<button class=\"btn btn-primary btn-rounded fa-cloud-upload \" type=\"button\" onclick=\"uploadPic('"+num+"');\" >"+"上传"+"</button>&nbsp;&nbsp;&nbsp;&nbsp;"+
                     " <button class=\"btn btn-danger btn-rounded "+num+" fa-trash-o \" type=\"button\" onclick=\"del("+num+")\" ></button>"+"</div></div>").appendTo($("#pic"));
                   num++;
                  }
-            
+
               </script>
 
 @stop

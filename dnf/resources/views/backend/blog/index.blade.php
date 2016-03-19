@@ -50,16 +50,16 @@
                                 @foreach($datas as $data)
                                 <tr id="articleList-data-id-{{ $data->id }}">
                                     <td class="center">{{{ $data->title}}}</td>
-                                    <td class= "center">                                     
+                                    <td class= "center">
                                                 <div class="row">
-                                                        
+
                                                         <div  class="col-sm-12">
-                                                            @foreach($data->tags as $tag) 
-                                                                 <a href="#" class="label label-primary label-tag"  title = "查看标签下所有文章" > {{$tag->tag}}</a>    
-                                                            @endforeach                    
+                                                            @foreach($data->tags as $tag)
+                                                                 <a href="#" class="label label-primary label-tag"  title = "查看标签下所有文章" > {{$tag->tag}}</a>
+                                                            @endforeach
                                                         </div>
                                                     </div>
-                                           
+
                                    </td>
                                     <td class="center">{{{ $data->author }}}</td>
                                     <td class= "center">{{{ $data->category->category}}}</td>
@@ -110,5 +110,5 @@
     </script>
 
 
- 
+
 @stop

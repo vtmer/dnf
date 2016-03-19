@@ -13,15 +13,15 @@
         .banner ul li { float: left; }
 
   .banner .dots { position: absolute; left: 200; bottom: 20px; }
-   .banner .dots li { display: inline-block; 
+   .banner .dots li { display: inline-block;
                                    width: 10px;
-                                    height: 10px; margin: 0 4px; 
-                                    text-indent: -999em; 
+                                    height: 10px; margin: 0 4px;
+                                    text-indent: -999em;
                                     border: 2px solid #000;
-                                     border-radius: 6px; 
-                                     cursor: pointer; 
-                                     opacity: .4; -webkit-transition: background .5s, opacity .5s; -moz-transition: background .5s, opacity .5s; transition: background .5s, opacity .5s; } 
-   .banner .dots li.active { background: #fff; opacity: 1; }      
+                                     border-radius: 6px;
+                                     cursor: pointer;
+                                     opacity: .4; -webkit-transition: background .5s, opacity .5s; -moz-transition: background .5s, opacity .5s; transition: background .5s, opacity .5s; }
+   .banner .dots li.active { background: #fff; opacity: 1; }
 </style>
 
 
@@ -49,7 +49,7 @@
 	<div class="panel">
 		<div class="panel-heading"   id ="head{{{$data->id}}}">
 		<span class="panel-title" > <strong>{{{$data->name}}}</strong></span>&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp
-                               
+
                                     {!! AclWidget::edit(route('backend_product_product_update', ['id' => $data->id]), 'product', 'product', 'update', null) !!}
                                     &nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp
 		                      <button class="btn btn-danger btn-rounded fa-trash-o " type="button" onclick="delProduct({{{$data->id}}},'{{ csrf_token() }}')" ></button>
@@ -66,21 +66,21 @@
                 		<h4><strong>产品图片      :<h5>(可用方向键← →移动)</h5>  </strong> </h4><br>
 
                                     <!--   将以逗号隔开的图片的url分离出来并且去掉空的url   -->
-                                     <?php $img_URLs = array_filter(explode(",",$data->img_URL)) ;?>    
-                                
+                                     <?php $img_URLs = array_filter(explode(",",$data->img_URL)) ;?>
+
                                    <!--   展示图片   -->
                                     <div class="banner">
                                         <ul>
-                                            @foreach($img_URLs as $img_URL) 
+                                            @foreach($img_URLs as $img_URL)
                                             <li> <img  id="img" width="300"src="{{{ $img_URL}}}"></li>
                                             @endforeach
                                         </ul>
                                     </div>
-		  
+
 		</div>
            </div>
            </div>
-            @endforeach   
+            @endforeach
     </div> <!-- / .page-header -->
 
 
@@ -108,7 +108,7 @@
                 if (r == true) {
                       $("#panel-body"+id).remove();
                       $("#head"+id).remove();
-                } 
+                }
               }
 
 
@@ -117,8 +117,8 @@
                             {
                                _token:csrf_token,
                                 id:product,
-                                
-                            }); 
+
+                            });
                       del(product);
 
                }

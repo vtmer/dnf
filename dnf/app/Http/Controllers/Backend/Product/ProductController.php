@@ -29,6 +29,15 @@ class ProductController extends BaseController{
 	$user = Auth::id();
     }
 
+
+    public function getProduct()
+    {
+        $datas = ProductModel::all();
+        return view('backend.product.index', compact('datas'));
+    }
+
+
+
    /**
      * 页面 ：产品添加页面
      * @return Response
@@ -57,19 +66,6 @@ class ProductController extends BaseController{
     }
 
 
-
-    /**
-     * 页面：产品列表
-     * @return Response
-     */
-     public function getProduct()
-     {
-        $datas = ProductModel::all();
-
-        return view('backend.product.index', [
-            'datas' => $datas,
-        ]);
-     }
 
 
 

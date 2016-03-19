@@ -25,15 +25,14 @@ class ArticleRequest extends FormRequest {
 	public function rules()
              {
 		return [
-		           'title'=> "required|between:1,20",
+		           'title'=> "required|between:1,50",
 		           'author'=> 'required|between:1,15',
 		            'category_id'=>'required',
 		            'description' => 'required',
 		            'tag_id' => 'required',
 		            'source'=> 'required|between:1,60',
 		            'description' => 'required',
-	 	            'img_URL'=>'URL',
-	                         'content'=>'required',
+	                'content'=>'required',
 		];
 	}
 
@@ -54,10 +53,10 @@ class ArticleRequest extends FormRequest {
 	            'category_id.required'=>$rules['required']['category_id'],
 	            'tag_id.required'=> $rules['required']['tag_id'],
 	            'description.required'=>$rules['required']['description'],
-	            'img_URL.url'=> $rules['URL'],
+	            'img_URL.url'=> $rules['required'],
 	            'source.required'=> $rules['required']['source'],
-	    	'source.between'=>$rules['between']['source'].':min ~ :max',
-                          'content.required' => $rules['required']['content'],
+	          	'source.between'=>$rules['between']['source'].':min ~ :max',
+                'content.required' => $rules['required']['content'],
         ];
 	}
 
