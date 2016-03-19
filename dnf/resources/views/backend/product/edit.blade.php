@@ -26,7 +26,7 @@
                                 <i class="fa fa-asterisk form-control-feedback"></i>
                             </div>
                         </div>
-                      </div> <!-- / .form-group -->   
+                      </div> <!-- / .form-group -->
 
                     <div class="form-group">
                         <label for="holder" class="col-sm-1 control-label">{{ Lang::get('backend.form.product.holder')}}：</label>
@@ -36,7 +36,7 @@
                                 <i class="fa fa-asterisk form-control-feedback"></i>
                             </div>
                          </div>
-                    </div> <!-- / .form-group --> 
+                    </div> <!-- / .form-group -->
 
 
                 <div class="form-group">
@@ -47,7 +47,7 @@
                                 <i class="fa fa-asterisk form-control-feedback"></i>
                             </div>
                          </div>
-                    </div> <!-- / .form-group --> 
+                    </div> <!-- / .form-group -->
 
                  <div class="form-group">
                       <label for="description" class="col-md-1 control-label">{{ Lang::get('backend.form.product.description')}}：</label>
@@ -55,17 +55,17 @@
                           <div class="has-feedback">
                             <input type="text" class="form-control" name="description" id="description" value="{{ $data->description or old('description') }}"  placeholder="@lang('backend.messages.input-source')">
                              <i class="fa fa-asterisk form-control-feedback"></i>
-                           </div> 
+                           </div>
                         </div>
-                    </div>    
+                    </div>
 
 
                           <!--   将以逗号隔开的图片的url分离出来并且去掉空的url   -->
-                          <?php $img_URLs = array_filter(explode(",",$data->img_URL)) ; $id = 0; ?>    
+                          <?php $img_URLs = array_filter(explode(",",$data->img_URL)) ; $id = 0; ?>
 
                      <div class="form-group" id = "pic">
                           <label for="title" class="col-sm-1 control-label">图片：</label>
-                         @foreach($img_URLs as $img_URL) 
+                         @foreach($img_URLs as $img_URL)
                           <?php $id = $id+1?>
                          <div class="col-sm-3  div{{{$id}}}">
                               <div class="has-feedback">
@@ -93,7 +93,7 @@
                            <div class="col-sm-offset-8 col-sm-10">
                              <button type="submit" class="btn btn-primary" > {{ Lang::get('backend.upload') }}</button>
                            </div>
-                       </div> <!-- / .form-group -->            
+                       </div> <!-- / .form-group -->
                   </div>
            </form>
       </div>
@@ -108,12 +108,12 @@
                 var r = confirm("Are  you  sure?");
                 if (r == true) {
                       $(".div"+id).remove();
-                } 
+                }
               }
 
               var num = 20;
                 function add(){
-                   $(" <div class=\"col-sm-3  div"+num+"\" ><div class=\"has-feedback\"><img width = \"auto\"height=\"200\" id=\""+num+"\" src=> <input type=\"hidden\" name=\""+num+"_URL\" id=\""+num+"_URL\" value=>"+  
+                   $(" <div class=\"col-sm-3  div"+num+"\" ><div class=\"has-feedback\"><img width = \"auto\"height=\"200\" id=\""+num+"\" src=> <input type=\"hidden\" name=\""+num+"_URL\" id=\""+num+"_URL\" value=>"+
                     "<br><button class=\"btn btn-primary btn-rounded  fa-cloud-upload \" type=\"button\" onclick=\"uploadPic('"+num+"');\" >"+"上传"+"</button>"+
                     " <button class=\"btn btn-danger btn-rounded "+num+" fa-trash-o \" type=\"button\" onclick=\"del("+num+")\" ></button>"+"</div></div>").appendTo($("#pic"));
                   num++;

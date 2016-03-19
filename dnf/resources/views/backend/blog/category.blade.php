@@ -124,7 +124,7 @@
                </div>
           </div>
         </div>
-       
+
     </div><!--/.modal-body-->
     <div class="modal-footer">
     <button  type="submit" class="btn btn-primary" >保存</button>
@@ -173,7 +173,7 @@
 1
     var creator  =  $(this).parent().siblings("td.creator").text() ;
     $("#update-creator").val(creator);
-    
+
         var updater_id  =  $(this).siblings($("#updater_id")).attr("value") ;
     $("#update-creator-id").val(updater_id);
 

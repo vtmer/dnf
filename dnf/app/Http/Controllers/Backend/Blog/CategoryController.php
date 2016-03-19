@@ -71,8 +71,8 @@ class CategoryController extends BaseController {
      */
      public function deleteCategory()
      {
-        $id = Input::get('id',false);
-        if($id==1)return Js::error(Lang::get('params.10007'));
+         $id = Input::get('id',false);
+        //if($id==1)return Js::error(Lang::get('params.10007'));
 
         $category = CategoryModel::find($id);
         if(!$category)return Js::response(Lang::get('params.10005',false));
@@ -88,6 +88,7 @@ class CategoryController extends BaseController {
         foreach($article_ids as $article_id){
             $article = ArticleModel::where('id','=',$article_id)->delete();
         };
+
         CategoryModel::deleteById($id);
         ActionModel::createOneAction('16',$category->category);
         return Js::response(null,true,false);

@@ -1,3 +1,4 @@
+use dnf;
 DROP TABLE IF EXISTS `dnf_admin_access`;
 CREATE TABLE `dnf_admin_access` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

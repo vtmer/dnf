@@ -25,7 +25,7 @@ class Category extends BaseModel{
 
    public static function deleteById($id)
    {
-        return static::delete($id);
+        return static::destroy($id);
    }
 
 /*
